@@ -1,0 +1,111 @@
+{
+ "posts": {
+  "https://karpathy.bearblog.dev/hacker-tube/": {
+   "t": "HackerTube",
+   "url": "https://karpathy.bearblog.dev/hacker-tube/",
+   "sub": "Instead of YouTube, watch HackerTube!",
+   "date": "2026-10-31",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/image-2.webp",
+   "hasbody": true,
+   "words": 386,
+   "ppl": []
+  },
+  "https://karpathy.bearblog.dev/sequoia-ascent-2026/": {
+   "t": "Sequoia Ascent 2026 summary",
+   "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
+   "sub": "Summary of my talk at Sequoia Ascent",
+   "date": "2026-04-30",
+   "cover": null,
+   "hasbody": true,
+   "words": 6062,
+   "ppl": [
+    "karpathy"
+   ]
+  },
+  "https://karpathy.bearblog.dev/year-in-review-2025/": {
+   "t": "2025 LLM Year in Review",
+   "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+   "sub": "2025 Year in Review of LLM paradigm changes",
+   "date": "2025-12-19",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/unnamed.webp",
+   "hasbody": true,
+   "words": 1760,
+   "ppl": []
+  },
+  "https://karpathy.bearblog.dev/chemical-hygiene/": {
+   "t": "Chemical hygiene",
+   "url": "https://karpathy.bearblog.dev/chemical-hygiene/",
+   "sub": "An evolving guide of protecting your health from a pricemaxxing industry.",
+   "date": "2025-12-18",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/gvwk5b1x0aeevjd.webp",
+   "hasbody": true,
+   "words": 2524,
+   "ppl": []
+  },
+  "https://karpathy.bearblog.dev/auto-grade-hn/": {
+   "t": "Auto-grading decade-old Hacker News discussions with hindsight",
+   "url": "https://karpathy.bearblog.dev/auto-grade-hn/",
+   "sub": "A vibe coding thought exercise on what it might look like for LLMs to scour human historical data at scale and in retrospect.",
+   "date": "2025-12-10",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/hnhero.webp",
+   "hasbody": true,
+   "words": 1016,
+   "ppl": [
+    "karpathy"
+   ]
+  },
+  "https://karpathy.bearblog.dev/the-space-of-minds/": {
+   "t": "The space of minds",
+   "url": "https://karpathy.bearblog.dev/the-space-of-minds/",
+   "sub": "On the space of minds and the optimizations that give rise to them.",
+   "date": "2025-11-29",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/g6zymj4a0amnjkj.webp",
+   "hasbody": true,
+   "words": 485,
+   "ppl": []
+  },
+  "https://karpathy.bearblog.dev/verifiability/": {
+   "t": "Verifiability",
+   "url": "https://karpathy.bearblog.dev/verifiability/",
+   "sub": "The impact of verifiability on the jagged frontier of LLMs",
+   "date": "2025-11-17",
+   "cover": null,
+   "hasbody": true,
+   "words": 379,
+   "ppl": []
+  },
+  "https://karpathy.bearblog.dev/animals-vs-ghosts/": {
+   "t": "Animals vs Ghosts",
+   "url": "https://karpathy.bearblog.dev/animals-vs-ghosts/",
+   "sub": "Today's frontier LLM research is not about building animals. It is about summoning ghosts. And a bit more on Sutton's Dwarkesh pod.",
+   "date": "2025-10-01",
+   "cover": null,
+   "hasbody": true,
+   "words": 1766,
+   "ppl": []
+  },
+  "https://karpathy.bearblog.dev/vibe-coding-menugen/": {
+   "t": "Vibe coding MenuGen",
+   "url": "https://karpathy.bearblog.dev/vibe-coding-menugen/",
+   "sub": "Work log of vibe coding menugen app",
+   "date": "2025-04-27",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/02pm.webp",
+   "hasbody": true,
+   "words": 2499,
+   "ppl": [
+    "karpathy"
+   ]
+  },
+  "https://karpathy.bearblog.dev/power-to-the-people/": {
+   "t": "Power to the people: How LLMs flip the script on technology diffusion",
+   "url": "https://karpathy.bearblog.dev/power-to-the-people/",
+   "sub": "Yes",
+   "date": "2025-04-07",
+   "cover": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/karpathy/a-beautifully-illustrated-watercolor-ima_tccw0iyurqi-radmafrzlw_gigbjdowq6cn6qf_yuu4ta-1.webp",
+   "hasbody": true,
+   "words": 921,
+   "ppl": []
+  }
+ },
+ "updated": "2026-11-27T14:45:56+00:00"
+}

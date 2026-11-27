@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.log
+.claude/settings.local.json
+
+# Textos íntegros de artículos: solo en local, nunca en el repositorio público
+cache/bodies/
+# Se genera en cada publicación desde cache/ (metadatos)
+site/data/

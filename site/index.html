@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BlogTube</title>
+<meta name="description" content="Vídeos y lecturas que merecen la pena. Sin algoritmo, sin prisa.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 22'%3E%3Crect width='30' height='22' rx='6' fill='%23e5484d'/%3E%3Cpath d='M12 6.5v9l8-4.5z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
+<script>
+  // Aplica el tema guardado antes del primer pintado (sin parpadeo).
+  try { const t = localStorage.getItem("theme"); if (t === "\"light\"" || t === "\"dark\"") document.documentElement.dataset.theme = JSON.parse(t); } catch {}
+</script>
+<style>
+:root {
+  --bg: #0f0f0f; --bg2: #181818; --bg3: #272727; --bg4: #3a3a3a;
+  --fg: #f1f1f1; --fg2: #aaaaaa; --accent: #e5484d; --link: #3ea6ff;
+  --radius: 12px; --hdr: 56px;
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #ffffff; --bg2: #f6f6f6; --bg3: #ececec; --bg4: #d9d9d9;
+  --fg: #0f0f0f; --fg2: #606060; --link: #065fd4; color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --bg2: #f6f6f6; --bg3: #ececec; --bg4: #d9d9d9;
+    --fg: #0f0f0f; --fg2: #606060; --link: #065fd4; color-scheme: light;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--fg); }
+body { font: 14px/1.4 "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+kbd { font-family: inherit; font-size: 12px; background: var(--bg3); border: 1px solid var(--bg4); border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; }
+
+/* ---------- Barra superior ---------- */
+header {
+  position: sticky; top: 0; z-index: 30; height: var(--hdr); padding: 0 16px;
+  display: flex; align-items: center; gap: 14px; background: var(--bg);
+}
+.logo { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 19px; letter-spacing: -0.5px; white-space: nowrap; }
+.logo svg { width: 30px; height: 22px; }
+.tabs { display: flex; background: var(--bg3); border-radius: 20px; padding: 3px; gap: 2px; flex: none; }
+.tabs a { height: 30px; padding: 0 14px; border-radius: 16px; display: flex; align-items: center; gap: 6px; font-weight: 500; color: var(--fg2); }
+.tabs a:hover { color: var(--fg); }
+.tabs a.on { background: var(--fg); color: var(--bg); }
+.tabs svg { width: 16px; height: 16px; fill: currentColor; }
+.search { flex: 1; max-width: 560px; margin: 0 auto; display: flex; min-width: 0; }
+.search input {
+  flex: 1; min-width: 0; height: 40px; padding: 0 16px; border: 1px solid var(--bg4); border-right: 0;
+  border-radius: 20px 0 0 20px; background: var(--bg); color: var(--fg); font-size: 15px; outline: none;
+}
+.search input:focus { border-color: #1c62b9; }
+.search button { width: 60px; border: 1px solid var(--bg4); border-radius: 0 20px 20px 0; background: var(--bg3); }
+.search button svg { width: 20px; height: 20px; fill: var(--fg); vertical-align: middle; }
+.shuffle-btn {
+  display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border: 0; border-radius: 18px;
+  background: var(--bg3); font-weight: 500; white-space: nowrap; flex: none;
+}
+.shuffle-btn:hover { background: var(--bg4); }
+.shuffle-btn svg { width: 18px; height: 18px; fill: var(--fg); }
+.icon-btn {
+  flex: none; width: 40px; height: 40px; border-radius: 50%; border: 0; background: transparent;
+  display: grid; place-items: center; font-size: 18px; font-weight: 700;
+}
+.icon-btn:hover, .icon-btn.active { background: var(--bg3); }
+.icon-btn svg { width: 22px; height: 22px; fill: var(--fg); }
+.hdr-right { display: flex; align-items: center; gap: 2px; }
+#menuBtn { display: none; }
+.theme-light-icon { display: none; }
+:root[data-theme="light"] .theme-light-icon { display: block; }
+:root[data-theme="light"] .theme-dark-icon { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-light-icon { display: block; }
+  :root:not([data-theme="dark"]) .theme-dark-icon { display: none; }
+}
+
+/* ---------- Layout ---------- */
+.layout { display: flex; }
+nav.side {
+  width: 248px; flex: none; height: calc(100vh - var(--hdr)); position: sticky; top: var(--hdr);
+  overflow-y: auto; padding: 8px 12px 24px; scrollbar-width: thin; background: var(--bg);
+}
+nav.side a.item { display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 38px; border-radius: 10px; }
+nav.side a.item:hover, nav.side a.item.active { background: var(--bg3); }
+nav.side a.item svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+nav.side h4 { margin: 16px 12px 6px; font-size: 14px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+nav.side hr { border: 0; border-top: 1px solid var(--bg3); margin: 10px 0; }
+nav.side .ch { height: 34px; font-size: 13.5px; }
+nav.side .ch span.name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+nav.side .foot { color: var(--fg2); font-size: 12px; padding: 0 12px; line-height: 1.5; }
+nav.side .foot a { text-decoration: underline; }
+main { flex: 1; min-width: 0; padding: 0 24px 40px; }
+#backdrop { display: none; }
+.bottom { display: none; }
+
+@media (max-width: 1000px) {
+  #menuBtn { display: grid; }
+  nav.side { position: fixed; left: 0; top: var(--hdr); z-index: 40; transform: translateX(-100%); transition: transform .2s; box-shadow: 0 0 30px rgba(0,0,0,.4); }
+  nav.side.open { transform: none; }
+  #backdrop.open { display: block; position: fixed; inset: var(--hdr) 0 0 0; z-index: 35; background: rgba(0,0,0,.45); }
+  main { padding: 0 16px 40px; }
+}
+@media (max-width: 760px) {
+  header .tabs, .shuffle-btn span { display: none; }
+  .shuffle-btn { padding: 0 9px; }
+  .bottom {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; height: 56px;
+    background: var(--bg); border-top: 1px solid var(--bg3); padding-bottom: env(safe-area-inset-bottom);
+  }
+  .bottom a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; color: var(--fg2); }
+  .bottom a.on { color: var(--fg); font-weight: 600; }
+  .bottom svg { width: 22px; height: 22px; fill: currentColor; }
+  main { padding-bottom: 80px; }
+}
+@media (max-width: 560px) {
+  .logo span { display: none; } header { gap: 6px; padding: 0 8px; }
+  .search button { width: 44px; } .icon-btn { width: 36px; height: 36px; }
+  #tvBtn, #aboutBtn { display: none; }
+}
+
+/* ---------- Avatares, temas ---------- */
+.av {
+  flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 10.5px; font-weight: 700; color: #111;
+}
+.av.lg { width: 36px; height: 36px; font-size: 13px; }
+.av.xl { width: 88px; height: 88px; font-size: 30px; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 4px; vertical-align: 1px; }
+.tpill {
+  display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 12px;
+  background: var(--bg3); font-size: 12.5px; font-weight: 500; white-space: nowrap;
+}
+.tpill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+a.tpill:hover { background: var(--bg4); }
+.ppill { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px 0 3px; border-radius: 12px; background: var(--bg3); font-size: 12.5px; font-weight: 500; }
+.ppill .av { width: 18px; height: 18px; font-size: 8px; }
+.ppill:hover { background: var(--bg4); }
+
+/* ---------- Chips ---------- */
+.chips { position: sticky; top: var(--hdr); z-index: 10; background: var(--bg); display: flex; gap: 10px; padding: 12px 0; overflow-x: auto; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; height: 32px; padding: 0 12px; border-radius: 8px; border: 0; background: var(--bg3); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.chip:hover { background: var(--bg4); }
+.chip.on { background: var(--fg); color: var(--bg); }
+.chip .dot { margin: 0; }
+.chip.sep { width: 1px; padding: 0; background: var(--bg4); pointer-events: none; }
+
+/* ---------- Rejilla de tarjetas ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 36px 16px; padding-top: 12px; }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; gap: 28px; } }
+.card { display: block; min-width: 0; }
+.thumb { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; background: var(--bg3); }
+.thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s; z-index: 1; }
+.card:hover .thumb img { transform: scale(1.03); }
+.thumb .dur, .thumb .seen, .thumb .lock {
+  position: absolute; z-index: 2; bottom: 6px; right: 6px; background: rgba(0,0,0,.8); color: #fff;
+  font-size: 12px; font-weight: 600; padding: 2px 5px; border-radius: 4px;
+}
+.thumb .seen { left: 6px; right: auto; background: rgba(0,0,0,.65); }
+.thumb .lock { top: 6px; bottom: auto; right: 6px; background: rgba(0,0,0,.65); }
+.card.done .thumb img { opacity: .55; }
+.thumb .ph {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 18px; text-align: center;
+  background: radial-gradient(120% 120% at 0% 0%, color-mix(in srgb, var(--c) 55%, transparent), transparent 70%), var(--bg2);
+  font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.2; color: var(--fg);
+}
+.meta { display: flex; gap: 12px; padding-top: 12px; }
+.meta .av { width: 36px; height: 36px; font-size: 13px; }
+.mt { min-width: 0; flex: 1; }
+.card .t { font-size: 16px; font-weight: 600; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.acard .t { font-family: var(--serif); font-size: 17px; }
+.card .dek { margin-top: 4px; color: var(--fg2); font-size: 13.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card .sub { color: var(--fg2); font-size: 13.5px; margin-top: 4px; }
+.card .chn:hover { color: var(--fg); }
+.sentinel { height: 1px; }
+.empty { color: var(--fg2); padding: 60px 0; text-align: center; font-size: 15px; }
+.pagetitle { font-size: 20px; margin: 20px 0 4px; }
+.pagesub { color: var(--fg2); margin: 0 0 4px; }
+
+/* ---------- Ver vídeo / leer artículo ---------- */
+.watch { display: flex; gap: 24px; padding-top: 24px; }
+.primary { flex: 1; min-width: 0; }
+.secondary { width: 402px; flex: none; }
+@media (max-width: 1100px) { .watch { flex-direction: column; } .secondary { width: auto; } }
+.player { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: var(--radius); overflow: hidden; }
+.player iframe, .player > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.watch h1 { font-size: 20px; margin: 12px 0 8px; line-height: 1.3; }
+.chrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.chrow .nm { font-weight: 600; font-size: 16px; }
+.chrow .cnt { color: var(--fg2); font-size: 12px; }
+.actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { height: 36px; padding: 0 16px; border-radius: 18px; border: 0; background: var(--bg3); display: inline-flex; align-items: center; gap: 6px; font-weight: 500; white-space: nowrap; }
+.pill:hover { background: var(--bg4); }
+.pill.primary { background: var(--fg); color: var(--bg); }
+.pill input { margin: 0; accent-color: var(--accent); }
+.desc { background: var(--bg3); border-radius: var(--radius); padding: 12px; margin-top: 12px; line-height: 1.5; }
+.desc .stats { font-weight: 600; margin-bottom: 6px; }
+.desc .tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+.desc .why { white-space: pre-line; }
+.desc.clamp .why { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.desc .more { background: none; border: 0; padding: 0; margin-top: 6px; font-weight: 600; }
+.secondary h3 { font-size: 16px; margin: 0 0 12px; }
+.secondary h3 + .mini { margin-top: 0; }
+.secondary .gap { height: 16px; }
+.mini { display: flex; gap: 8px; margin-bottom: 10px; }
+.mini .thumb { width: 168px; flex: none; border-radius: 8px; }
+.mini .t { font-size: 14px; font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mini.art .t { font-family: var(--serif); }
+.mini .sub { color: var(--fg2); font-size: 12px; margin-top: 4px; }
+.mini.done .thumb img { opacity: .55; }
+.mini .thumb .ph { font-size: 13px; padding: 8px; }
+
+/* Lector de artículos */
+#progress { position: fixed; top: var(--hdr); left: 0; height: 3px; width: 0; background: var(--accent); z-index: 31; transition: width .1s; }
+.reader { max-width: 1240px; }
+.reader article { max-width: 720px; }
+.reader .kicker { display: flex; align-items: center; gap: 10px; color: var(--fg2); font-size: 14px; }
+.reader .kicker a { color: var(--fg); font-weight: 600; }
+.reader h1 { font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); line-height: 1.15; margin: 16px 0 10px; letter-spacing: -0.3px; }
+.reader .dekbig { font-family: var(--serif); font-size: 20px; color: var(--fg2); line-height: 1.4; margin: 0 0 16px; }
+.reader .byline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--fg2); padding: 12px 0; border-top: 1px solid var(--bg3); border-bottom: 1px solid var(--bg3); }
+.reader .byline .actions { margin-left: auto; }
+.reader .byline .pill { height: 32px; padding: 0 12px; }
+.reader .coverimg { width: 100%; border-radius: var(--radius); margin: 20px 0 0; display: block; }
+.prose { font-family: var(--serif); font-size: var(--fs, 19px); line-height: 1.7; margin-top: 24px; overflow-wrap: break-word; }
+.prose p { margin: 0 0 1.1em; }
+.prose h2, .prose h3, .prose h4 { line-height: 1.25; margin: 1.6em 0 .6em; }
+.prose a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+.prose img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 1em auto; }
+.prose figure { margin: 1.5em 0; }
+.prose figcaption { font-size: .8em; color: var(--fg2); text-align: center; }
+.prose blockquote { margin: 1.2em 0; padding: 0 0 0 1em; border-left: 3px solid var(--accent); color: var(--fg2); font-style: italic; }
+.prose pre { background: var(--bg3); padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: .78em; line-height: 1.5; }
+.prose code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em; background: var(--bg3); padding: 1px 4px; border-radius: 4px; }
+.prose pre code { background: none; padding: 0; }
+.prose hr { border: 0; text-align: center; margin: 2em 0; }
+.prose hr::after { content: "· · ·"; color: var(--fg2); letter-spacing: .5em; }
+.prose table { border-collapse: collapse; width: 100%; font-size: .85em; display: block; overflow-x: auto; }
+.prose td, .prose th { border: 1px solid var(--bg4); padding: 6px 8px; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose li { margin: .3em 0; }
+.nobody { margin-top: 28px; background: var(--bg3); border-radius: var(--radius); padding: 20px; line-height: 1.6; }
+.endcta { margin: 36px 0 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.skel { height: 14px; background: var(--bg3); border-radius: 6px; margin: 14px 0; animation: pulse 1.2s infinite ease-in-out; }
+@keyframes pulse { 50% { opacity: .5; } }
+
+/* Canal / publicación / persona */
+.chhead { display: flex; gap: 24px; align-items: center; padding: 28px 0 8px; }
+.chhead h1 { margin: 0 0 4px; font-size: 32px; line-height: 1.15; }
+.chhead .sub { color: var(--fg2); }
+.chhead .blurb { margin-top: 8px; max-width: 800px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.chhead .actions { margin: 12px 0 0; }
+.chhead .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+@media (max-width: 600px) { .chhead { flex-direction: column; align-items: flex-start; gap: 12px; } .chhead h1 { font-size: 26px; } }
+.people { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding-top: 16px; }
+.pcard { background: var(--bg2); border: 1px solid var(--bg3); border-radius: var(--radius); padding: 18px; display: flex; gap: 14px; }
+.pcard:hover { background: var(--bg3); }
+.pcard .av { width: 52px; height: 52px; font-size: 18px; }
+.pcard h3 { margin: 0 0 4px; font-size: 16px; }
+.pcard p { margin: 0 0 8px; color: var(--fg2); font-size: 13px; line-height: 1.45; }
+.pcard .n { font-size: 12px; color: var(--fg2); font-weight: 500; }
+
+/* About */
+.about { max-width: 760px; margin: 0 auto; padding: 24px 0 40px; font-size: 15px; line-height: 1.6; }
+.about h1 { font-size: 28px; margin: 0 0 8px; }
+.about h2 { font-size: 18px; margin: 28px 0 8px; }
+.about p { margin: 8px 0; }
+.about a.link { color: var(--link); text-decoration: underline; }
+.about code, .about pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; background: var(--bg3); border-radius: 6px; }
+.about code { padding: 1px 5px; }
+.about pre { padding: 12px 14px; overflow-x: auto; line-height: 1.45; }
+.about .stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.about .stat { background: var(--bg3); border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+.about .stat b { font-variant-numeric: tabular-nums; }
+.about ul { padding-left: 20px; margin: 8px 0; }
+
+/* ---------- Modo TV ---------- */
+#tv { position: fixed; inset: 0; z-index: 100; background: #000; display: none; color: #fff; }
+#tv.open { display: block; }
+#tv .tvplayer, #tv .tvplayer iframe, #tv .tvplayer > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+#tv .tvcatch { position: absolute; inset: 0; cursor: none; }
+#tv.show-ui .tvcatch { cursor: default; }
+#tv .osd { position: absolute; left: 0; right: 0; bottom: 0; padding: 100px 48px 32px; pointer-events: none; background: linear-gradient(transparent, rgba(0,0,0,.88)); opacity: 0; transition: opacity .4s; }
+#tv .top { position: absolute; right: 0; top: 0; padding: 24px 32px; pointer-events: none; opacity: 0; transition: opacity .4s; }
+#tv.show-ui .osd, #tv.show-ui .top { opacity: 1; }
+#tv .exit { pointer-events: auto; background: rgba(255,255,255,.15); color: #fff; border: 0; border-radius: 18px; height: 36px; padding: 0 14px; font-weight: 500; }
+#tv .exit:hover { background: rgba(255,255,255,.28); }
+#tv .ttl { font-size: clamp(20px, 2.6vw, 34px); font-weight: 700; line-height: 1.2; max-width: 1100px; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+#tv .chn { margin-top: 8px; font-size: clamp(14px, 1.3vw, 18px); opacity: .85; }
+#tv .barrow { display: flex; align-items: center; gap: 14px; margin-top: 18px; font-size: 14px; font-variant-numeric: tabular-nums; }
+#tv .bar { flex: 1; height: 5px; background: rgba(255,255,255,.25); border-radius: 3px; position: relative; }
+#tv .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 3px; width: 0; }
+#tv .bar b { position: absolute; top: -4px; width: 2px; height: 13px; background: rgba(255,255,255,.35); }
+#tv .keys { margin-top: 14px; font-size: 13px; opacity: .65; }
+#tv .keys kbd { color: #fff; background: transparent; border-color: rgba(255,255,255,.4); margin-right: 3px; }
+#tv .toast { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; background: rgba(0,0,0,.65); padding: 14px 24px; border-radius: 14px; font-size: 28px; font-weight: 700; opacity: 0; transition: opacity .25s; }
+#tv .toast.on { opacity: 1; }
+@media (max-width: 700px) { #tv .osd { padding: 80px 16px 20px; } #tv .top { padding: 16px; } #tv .keys { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <button class="icon-btn" id="menuBtn" aria-label="Menú"><svg viewBox="0 0 24 24"><path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"/></svg></button>
+  <a class="logo" href="#/" title="Inicio">
+    <svg viewBox="0 0 30 22"><rect width="30" height="22" rx="6" fill="#e5484d"/><path d="M12 6.5v9l8-4.5z" fill="#fff"/></svg>
+    <span id="siteTitle">BlogTube</span>
+  </a>
+  <nav class="tabs">
+    <a href="#/" id="tabV"><svg viewBox="0 0 24 24"><path d="M10 8v8l6-4-6-4zm11-5H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 16H4V5h16v14z"/></svg>Vídeos</a>
+    <a href="#/a" id="tabA"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V5h14v14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/></svg>Artículos</a>
+  </nav>
+  <form class="search" id="searchForm" role="search">
+    <input id="q" type="search" placeholder="Buscar" autocomplete="off" aria-label="Buscar">
+    <button aria-label="Buscar"><svg viewBox="0 0 24 24"><path d="M20.87 20.17l-5.59-5.59A7.46 7.46 0 0 0 17 10a7 7 0 1 0-7 7c1.75 0 3.35-.64 4.58-1.72l5.59 5.59.7-.7zM10 16a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/></svg></button>
+  </form>
+  <button class="shuffle-btn" id="luckyBtn" title="Algo al azar (Shift+N)">
+    <svg viewBox="0 0 24 24"><path d="M18.15 13.65 22 17.5l-3.85 3.85-.71-.71L20.09 18H19c-2.84 0-4.94-2.04-6.97-4.01l.71-.71C14.59 15.12 16.55 17 19 17h1.09l-2.65-2.65.71-.7zM18.15 2.65l-.71.71L20.09 6H19c-5.53 0-8.72 6.65-11.39 9.830C6.43 17.25 5.03 18 3 18v1c2.4 0 4.040-.9 5.38-2.5C11.2 13.15 14.08 7 19 7h1.09l-2.65 2.65.71.71L22 6.5l-3.85-3.85zM3 5v1c1.74 0 3.04.67 4.29 1.82l.7-.71C6.6 5.86 5.09 5 3 5z"/></svg>
+    <span>Sorpréndeme</span>
+  </button>
+  <div class="hdr-right">
+    <button class="icon-btn" id="tvBtn" title="Modo TV (T): vídeos al azar a pantalla completa" aria-label="Modo TV">
+      <svg viewBox="0 0 24 24"><path d="M21 4H3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h7v2H7v1h10v-1h-3v-2h7a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm0 13H3V5h18v12zM10 8v6l5-3-5-3z"/></svg>
+    </button>
+    <button class="icon-btn" id="themeBtn" title="Tema claro / oscuro" aria-label="Cambiar tema">
+      <svg class="theme-dark-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+      <svg class="theme-light-icon" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2 13h2a1 1 0 0 0 0-2H2a1 1 0 0 0 0 2zm18 0h2a1 1 0 0 0 0-2h-2a1 1 0 0 0 0 2zM11 2v2a1 1 0 0 0 2 0V2a1 1 0 0 0-2 0zm0 18v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-2 0zM5.99 4.58a1 1 0 0 0-1.41 1.41l1.06 1.06a1 1 0 0 0 1.41-1.41L5.99 4.58zm12.37 12.37a1 1 0 0 0-1.41 1.41l1.06 1.06a1 1 0 0 0 1.41-1.41l-1.06-1.06zm1.06-10.96a1 1 0 0 0-1.41-1.41l-1.06 1.06a1 1 0 0 0 1.41 1.41l1.06-1.06zM7.05 18.36a1 1 0 0 0-1.41-1.41l-1.06 1.06a1 1 0 0 0 1.41 1.41l1.06-1.06z"/></svg>
+    </button>
+    <a class="icon-btn" id="aboutBtn" href="#/about" title="Acerca de / atajos" aria-label="Acerca de">?</a>
+  </div>
+</header>
+<div id="progress"></div>
+<div class="layout">
+  <nav class="side" id="side"></nav>
+  <div id="backdrop"></div>
+  <main id="main"><div class="empty">Cargando…</div></main>
+</div>
+<nav class="bottom" id="bottom">
+  <a href="#/" data-b="v"><svg viewBox="0 0 24 24"><path d="M10 8v8l6-4-6-4zm11-5H3a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm-1 16H4V5h16v14z"/></svg>Vídeos</a>
+  <a href="#/a" data-b="a"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V5h14v14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/></svg>Artículos</a>
+  <a href="#/personas" data-b="p"><svg viewBox="0 0 24 24"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Personas</a>
+  <a href="#/about" data-b="about"><svg viewBox="0 0 24 24"><path d="M11 17h2v-6h-2v6zm1-15a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zM11 9h2V7h-2v2z"/></svg>Acerca</a>
+</nav>
+
+<div id="tv" aria-hidden="true">
+  <div class="tvplayer"><div id="tvplayer"></div></div>
+  <div class="tvcatch"></div>
+  <div class="top"><button class="exit" id="tvExit">Salir (Esc)</button></div>
+  <div class="osd">
+    <div class="ttl" id="tvTitle"></div>
+    <div class="chn" id="tvChan"></div>
+    <div class="barrow"><span id="tvCur">0:00</span><div class="bar" id="tvBar"><i></i></div><span id="tvDur">0:00</span></div>
+    <div class="keys"><kbd>N</kbd>siguiente &nbsp; <kbd>P</kbd>anterior &nbsp; <kbd>Espacio</kbd>pausa &nbsp; <kbd>←</kbd><kbd>→</kbd>±10 s &nbsp; <kbd>1</kbd>–<kbd>9</kbd>saltar &nbsp; <kbd>M</kbd>silencio &nbsp; <kbd>Esc</kbd>salir</div>
+  </div>
+  <div class="toast" id="tvToast"></div>
+</div>
+
+<script>
+"use strict";
+/* =====================================================================
+   BlogTube — un "YouTube + lector" personal, estático, sin servidor.
+   Datos: data/meta.json, data/videos.json, data/articles.json, data/a/<id>.json
+   ===================================================================== */
+let META = { topics: [], people: [] };
+let CH = [], V = [], byCh = [], vById = new Map();
+let P = [], A = [], byPub = [], aById = new Map();
+const PEOPLE = [];
+
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const thumb = id => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+const initials = n => String(n).replace(/[^\p{L}\p{N} ]/gu, "").split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase() || "?";
+const LS = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+// Vídeos vistos / artículos leídos (solo en este navegador)
+const done = new Set(LS.get("done", []));
+function markDone(id) { if (done.has(id)) return; done.add(id); LS.set("done", [...done].slice(-8000)); }
+
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function fmtDur(s) {
+  if (!s) return "";
+  const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sec = Math.floor(s % 60);
+  return (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(sec).padStart(2, "0");
+}
+function fmtNum(n) {
+  if (n >= 1e9) return (n / 1e9).toFixed(n >= 1e10 ? 0 : 1).replace(/\.0$/, "").replace(".", ",") + " mil M";
+  if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, "").replace(".", ",") + " M";
+  if (n >= 1e3) return (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, "").replace(".", ",") + " K";
+  return String(n);
+}
+const fmtViews = n => n == null ? "" : fmtNum(n) + " vistas";
+function fmtAgo(d) {
+  if (!d) return "";
+  const days = Math.floor((Date.now() - new Date(d + "T12:00:00Z")) / 864e5);
+  if (days < 1) return "hoy";
+  if (days < 2) return "ayer";
+  if (days < 14) return `hace ${days} días`;
+  if (days < 60) return `hace ${Math.round(days / 7)} semanas`;
+  if (days < 365) return `hace ${Math.round(days / 30)} meses`;
+  const y = Math.floor(days / 365); return `hace ${y} año${y > 1 ? "s" : ""}`;
+}
+function fmtDate(d) {
+  if (!d) return "";
+  try { return new Date(d + "T12:00:00Z").toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" }); } catch { return d; }
+}
+const topicsOf = m => META.topics.map((_, i) => i).filter(i => m >> i & 1);
+const peopleOf = m => PEOPLE.filter((_, i) => m >> i & 1);
+const tColor = i => (META.topics[i] || {}).color || "#888";
+const dots = m => topicsOf(m).slice(0, 3).map(i => `<i class="dot" style="background:${tColor(i)}" title="${esc(META.topics[i].name)}"></i>`).join("");
+const tpill = i => `<span class="tpill" style="--c:${tColor(i)}">${esc(META.topics[i].name)}</span>`;
+const srcColor = s => s && s.topics && s.topics.length ? tColor(s.topics[0]) : "#9aa0a6";
+const av = (s, cls = "") => `<span class="av ${cls}" style="background:${srcColor(s)}">${esc(initials(s.name))}</span>`;
+const pav = (p, cls = "") => `<span class="av ${cls}" style="background:${p.color}">${esc(initials(p.name))}</span>`;
+const ppill = p => `<a class="ppill" href="#/p/${p.slug}">${pav(p)}${esc(p.name)}</a>`;
+
+/* ---------- Muestreo aleatorio ponderado ("Para ti") ----------
+   1) se elige una fuente al azar ponderada por su "peso" (sources.toml), de modo que
+      un canal con 5.000 vídeos no ahoga a uno con 50;
+   2) dentro de ella se sacan dos piezas al azar y gana la más vista (vídeos) o la más
+      reciente (artículos): un sesgo suave hacia lo mejor/lo nuevo.               */
+const sess = { v: new Set(), a: new Set() };
+const poolCache = new Map();
+function okV(v, f) {
+  if (f.topic != null && !(v.tm >> f.topic & 1)) return false;
+  if (f.len === "short") return v.dur > 0 && v.dur < 600;
+  if (f.len === "long") return v.dur >= 1800;
+  return true;
+}
+function okA(a, f) {
+  if (f.topic != null && !(a.tm >> f.topic & 1)) return false;
+  if (f.len === "short" && !(a.min > 0 && a.min <= 7)) return false;
+  if (f.len === "long" && !(a.min >= 15)) return false;
+  if (f.text && !a.has) return false;
+  return true;
+}
+function groups(kind, f) {
+  const key = kind + JSON.stringify(f);
+  if (poolCache.has(key)) return poolCache.get(key);
+  const src = kind === "v" ? CH : P, by = kind === "v" ? byCh : byPub, ok = kind === "v" ? okV : okA;
+  const gs = [], ext = [];
+  for (const s of src) {
+    const items = by[s.i].filter(x => ok(x, f));
+    if (!items.length) continue;
+    if (s.ext) ext.push(...items); else gs.push({ w: s.peso || 3, items });
+  }
+  if (ext.length) gs.push({ w: 3, items: ext });   // todas las entrevistas de "personas" cuentan como una fuente
+  const r = { gs, total: gs.reduce((t, g) => t + g.w, 0) };
+  poolCache.set(key, r);
+  return r;
+}
+const better = (kind, x, y) => kind === "v" ? (x.views ?? 0) > (y.views ?? 0) : (x.date || "") > (y.date || "");
+function sampleOne(kind, f) {
+  const { gs, total } = groups(kind, f);
+  if (!gs.length) return null;
+  const seen = sess[kind];
+  for (let attempt = 0; attempt < 80; attempt++) {
+    let r = Math.random() * total, g = gs[gs.length - 1];
+    for (const x of gs) { r -= x.w; if (r <= 0) { g = x; break; } }
+    let best = null;
+    for (let k = 0; k < 2; k++) {
+      const x = g.items[Math.random() * g.items.length | 0];
+      if (seen.has(x.id) || (attempt < 50 && done.has(x.id))) continue;   // primero, lo no visto
+      if (!best || better(kind, x, best)) best = x;
+    }
+    if (best) return best;
+  }
+  return null;
+}
+function sampleMany(kind, n, f = {}) {
+  const out = [];
+  for (let i = 0; i < n; i++) { const x = sampleOne(kind, f); if (!x) break; sess[kind].add(x.id); out.push(x); }
+  return out;
+}
+function recentList(kind, f) {
+  const ok = kind === "v" ? okV : okA;
+  return (kind === "v" ? V : A).filter(x => !(kind === "v" && CH[x.ch].ext) && ok(x, f)).sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+}
+
+/* ---------- Tarjetas ---------- */
+function vCard(v, showCh = true) {
+  const c = CH[v.ch], d = done.has(v.id);
+  return `<a class="card${d ? " done" : ""}" href="#/watch/${v.id}">
+    <div class="thumb"><img loading="lazy" src="${thumb(v.id)}" alt="">
+      ${v.dur ? `<span class="dur">${fmtDur(v.dur)}</span>` : ""}${d ? `<span class="seen">✓ Visto</span>` : ""}</div>
+    <div class="meta">${showCh ? `<span data-href="#/c/${c.i}">${av(c)}</span>` : ""}<div class="mt">
+      <div class="t" title="${esc(v.t)}">${esc(v.t)}</div>
+      ${showCh ? `<div class="sub"><span class="chn" data-href="#/c/${c.i}">${esc(c.name)}</span></div>` : ""}
+      <div class="sub">${[fmtViews(v.views), fmtAgo(v.date)].filter(Boolean).join(" · ")}${dots(v.tm)}</div>
+    </div></div></a>`;
+}
+function coverHTML(a, p) {
+  return `${a.cover ? `<img loading="lazy" src="${esc(a.cover)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}
+    <div class="ph" style="--c:${srcColor(p)}"><span>${esc(p.name)}</span></div>`;
+}
+function aCard(a, showPub = true) {
+  const p = P[a.pub], d = done.has(a.id);
+  return `<a class="card acard${d ? " done" : ""}" href="#/a/read/${a.id}">
+    <div class="thumb">${coverHTML(a, p)}
+      ${a.min ? `<span class="dur">${a.min} min</span>` : ""}${a.paid ? `<span class="lock">🔒 De pago</span>` : ""}${d ? `<span class="seen">✓ Leído</span>` : ""}</div>
+    <div class="meta">${showPub ? `<span data-href="#/a/p/${p.i}">${av(p)}</span>` : ""}<div class="mt">
+      <div class="t" title="${esc(a.t)}">${esc(a.t)}</div>
+      ${a.sub ? `<div class="dek">${esc(a.sub)}</div>` : ""}
+      <div class="sub">${showPub ? `<span class="chn" data-href="#/a/p/${p.i}">${esc(p.author || p.name)}</span> · ` : ""}${fmtDate(a.date)}${dots(a.tm)}</div>
+    </div></div></a>`;
+}
+function vMini(v) {
+  const c = CH[v.ch];
+  return `<a class="mini${done.has(v.id) ? " done" : ""}" href="#/watch/${v.id}">
+    <div class="thumb"><img loading="lazy" src="${thumb(v.id)}" alt="">${v.dur ? `<span class="dur">${fmtDur(v.dur)}</span>` : ""}</div>
+    <div style="min-width:0"><div class="t" title="${esc(v.t)}">${esc(v.t)}</div>
+      <div class="sub">${esc(c.name)}${dots(v.tm)}</div>
+      <div class="sub">${[fmtViews(v.views), fmtAgo(v.date)].filter(Boolean).join(" · ")}</div></div></a>`;
+}
+function aMini(a) {
+  const p = P[a.pub];
+  return `<a class="mini art${done.has(a.id) ? " done" : ""}" href="#/a/read/${a.id}">
+    <div class="thumb">${coverHTML(a, p)}${a.min ? `<span class="dur">${a.min} min</span>` : ""}</div>
+    <div style="min-width:0"><div class="t" title="${esc(a.t)}">${esc(a.t)}</div>
+      <div class="sub">${esc(p.author || p.name)}${dots(a.tm)}</div>
+      <div class="sub">${fmtDate(a.date)}</div></div></a>`;
+}
+const card = (kind, x, show) => kind === "v" ? vCard(x, show) : aCard(x, show);
+
+// Rejilla con scroll infinito alimentada por more(n) → siguiente lote.
+function infiniteGrid(container, more, render, opts = {}) {
+  const grid = document.createElement("div"); grid.className = "grid";
+  const sentinel = document.createElement("div"); sentinel.className = "sentinel";
+  container.append(grid, sentinel);
+  let ended = false, io = null;
+  const load = () => {
+    if (ended) return;
+    const batch = more(24);
+    if (!batch.length) {
+      ended = true;
+      if (!grid.children.length) grid.outerHTML = `<div class="empty">${opts.emptyText || "Aquí no hay nada."}</div>`;
+      return;
+    }
+    grid.insertAdjacentHTML("beforeend", batch.map(render).join(""));
+  };
+  load(); load();
+  const resume = () => { io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) load(); }, { rootMargin: "1200px" }); io.observe(sentinel); };
+  const stop = () => { io && io.disconnect(); io = null; };
+  resume();
+  return { stop, resume };
+}
+
+/* ---------- Barra lateral ---------- */
+const ICON = {
+  home: `<svg viewBox="0 0 24 24"><path d="M4 21V10.08l8-6.96 8 6.96V21h-6v-6h-4v6H4z"/></svg>`,
+  people: `<svg viewBox="0 0 24 24"><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>`,
+  recent: `<svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6a7 7 0 1 1 2.05 4.95l-1.42 1.42A9 9 0 1 0 13 3zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>`,
+};
+let sideKind = null;
+function renderSide(kind) {
+  if (sideKind === kind) return;
+  sideKind = kind;
+  const src = kind === "v" ? CH.filter(c => !c.ext) : P;
+  const base = kind === "v" ? "#/" : "#/a";
+  const pre = kind === "v" ? "#/c/" : "#/a/p/";
+  let h = `<a class="item" href="${base}" data-route="${kind}:home">${ICON.home} Para ti</a>
+    <a class="item" href="${kind === "v" ? "#/recientes" : "#/a/recientes"}" data-route="${kind}:recent">${ICON.recent} Novedades</a>
+    <a class="item" href="#/personas" data-route="personas">${ICON.people} Personas</a><hr>`;
+  // Agrupa las fuentes por su primer núcleo temático
+  const groupsByTopic = new Map();
+  for (const s of src) { const k = s.topics.length ? s.topics[0] : -1; if (!groupsByTopic.has(k)) groupsByTopic.set(k, []); groupsByTopic.get(k).push(s); }
+  const order = [...META.topics.keys(), -1].filter(k => groupsByTopic.has(k));
+  for (const k of order) {
+    h += `<h4>${k >= 0 ? `<i class="dot" style="background:${tColor(k)};margin:0"></i> ${esc(META.topics[k].name)}` : "Otros"}</h4>`;
+    for (const s of groupsByTopic.get(k)) h += `<a class="item ch" href="${pre}${s.i}" data-route="${kind}:s${s.i}">${av(s)}<span class="name">${esc(kind === "a" && s.author && s.author !== s.name ? s.name + " · " + s.author : s.name)}</span></a>`;
+  }
+  h += `<hr><div class="foot">${META.generated ? `Actualizado ${fmtAgo(META.generated.slice(0, 10))}.<br>` : ""}
+    Inspirado en <a href="https://karpathy.ai/tristan-tube/" target="_blank" rel="noopener">TristanTube</a> de Andrej Karpathy. <a href="#/about">Cómo funciona</a>.</div>`;
+  $("#side").innerHTML = h;
+}
+function markSide(route) { document.querySelectorAll("#side a.item").forEach(a => a.classList.toggle("active", a.dataset.route === route)); }
+function setTab(kind) {
+  $("#tabV").classList.toggle("on", kind === "v");
+  $("#tabA").classList.toggle("on", kind === "a");
+  document.querySelectorAll("#bottom a").forEach(a => a.classList.toggle("on", a.dataset.b === kind));
+  $("#q").placeholder = innerWidth < 600 ? (kind === "a" ? "Buscar artículos" : "Buscar vídeos")
+    : kind === "a" ? `Buscar en ${A.length.toLocaleString("es-ES")} artículos` : `Buscar en ${V.length.toLocaleString("es-ES")} vídeos`;
+  renderSide(kind === "p" ? (curKind || "v") : kind);
+}
+let curKind = "v";
+
+/* ---------- Vistas ---------- */
+let cleanup = () => {};
+const homeState = {};   // conserva el feed al volver atrás (no se rebaraja)
+
+function viewHome(kind, recent = false) {
+  const key = kind + (recent ? ":recent" : ":home");
+  const main = $("#main");
+  const st0 = homeState[key];
+  if (st0) {
+    main.replaceChildren(st0.el); st0.grid && st0.grid.resume();
+    requestAnimationFrame(() => window.scrollTo(0, st0.scroll));
+    cleanup = () => { st0.scroll = window.scrollY; st0.grid && st0.grid.stop(); };
+    return;
+  }
+  const el = document.createElement("div");
+  const f = { topic: null, len: null };
+  const L = kind === "v" ? [["short", "Menos de 10 min"], ["long", "30+ min"]] : [["short", "Lectura corta"], ["long", "Lectura larga"]];
+  const chips = [
+    { label: "Todo", act: () => { f.topic = null; }, on: () => f.topic == null },
+    ...META.topics.map((t, i) => ({ label: `<i class="dot" style="background:${t.color}"></i>${esc(t.name)}`, act: () => { f.topic = f.topic === i ? null : i; }, on: () => f.topic === i })),
+    "sep",
+    ...L.map(([k, label]) => ({ label, act: () => { f.len = f.len === k ? null : k; }, on: () => f.len === k })),
+  ];
+  if (kind === "a" && META.textos) chips.push({ label: "Solo con texto aquí", act: () => { f.text = !f.text; }, on: () => !!f.text });
+  el.innerHTML = `${recent ? `<h2 class="pagetitle">Novedades</h2><p class="pagesub">${kind === "v" ? "Lo último de tus canales, en orden cronológico." : "Lo último de tus blogs, en orden cronológico."}</p>` : ""}
+    <div class="chips">${chips.map((c, i) => c === "sep" ? `<span class="chip sep"></span>` : `<button class="chip" data-i="${i}">${c.label}</button>`).join("")}
+    ${recent ? "" : `<button class="chip" id="reshuffle" title="Rebarajar el feed">⟳ Rebarajar</button>`}</div><div class="feed"></div>`;
+  const feed = $(".feed", el);
+  const st = homeState[key] = { el, scroll: 0, grid: null };
+  const sync = () => el.querySelectorAll(".chip[data-i]").forEach(b => b.classList.toggle("on", chips[b.dataset.i].on()));
+  const rebuild = () => {
+    st.grid && st.grid.stop(); feed.replaceChildren(); sess[kind].clear(); sync();
+    let more;
+    if (recent) { const list = recentList(kind, f); let pos = 0; more = n => list.slice(pos, pos += n); }
+    else more = n => sampleMany(kind, n, f);
+    st.grid = infiniteGrid(feed, more, x => card(kind, x, true), { emptyText: "Nada coincide con estos filtros." });
+  };
+  el.querySelectorAll(".chip[data-i]").forEach(b => b.onclick = () => { chips[b.dataset.i].act(); rebuild(); window.scrollTo(0, 0); });
+  const rs = $("#reshuffle", el); if (rs) rs.onclick = () => { rebuild(); window.scrollTo(0, 0); };
+  main.replaceChildren(el);
+  rebuild();
+  window.scrollTo(0, 0);
+  cleanup = () => { st.scroll = window.scrollY; st.grid && st.grid.stop(); };
+}
+
+/* Reproductor de YouTube */
+let ytReady = null, player = null;
+function loadYT() {
+  if (!ytReady) ytReady = new Promise(res => {
+    window.onYouTubeIframeAPIReady = res;
+    const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; document.head.append(s);
+  });
+  return ytReady;
+}
+let autoplayNext = LS.get("autoplayNext", true);
+let upNext = [];
+
+function viewWatch(id) {
+  const v = vById.get(id), main = $("#main");
+  if (!v) { main.innerHTML = `<div class="empty">Vídeo no encontrado.</div>`; return; }
+  const c = CH[v.ch];
+  markDone(id);
+  const same = shuffle(byCh[c.i].filter(x => x.id !== id)).slice(0, 4);
+  const rest = sampleMany("v", 16, {});
+  upNext = shuffle([...same, ...rest]).filter(x => x.id !== id);
+  if (upNext.length && upNext[0].ch === v.ch) upNext.push(upNext.shift());
+  const ppl = peopleOf(v.pm);
+  const blurb = c.blurb || "";
+  main.innerHTML = `<div class="watch">
+    <div class="primary">
+      <div class="player"><div id="ytplayer"></div></div>
+      <h1>${esc(v.t)}</h1>
+      <div class="chrow">${av(c, "lg")}
+        <div><a class="nm" href="#/c/${c.i}">${esc(c.name)}</a>
+          <div class="cnt">${c.ext ? "Canal externo · encontrado por " + (ppl.map(p => esc(p.name)).join(", ") || "búsqueda") : (c.subs ? fmtNum(c.subs) + " suscriptores · " : "") + c.n.toLocaleString("es-ES") + " vídeos"}</div></div>
+        <div class="actions">
+          <button class="pill primary" id="nextBtn" title="Shift+N">Siguiente al azar ⏭</button>
+          <label class="pill" title="Reproducir otro al azar cuando acabe"><input type="checkbox" id="autoNext" ${autoplayNext ? "checked" : ""}> Autoplay</label>
+          <a class="pill" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">YouTube ↗</a>
+        </div>
+      </div>
+      <div class="desc clamp" id="desc">
+        <div class="stats">${[fmtViews(v.views), v.dur ? fmtDur(v.dur) : "", v.date ? fmtDate(v.date) : ""].filter(Boolean).join(" · ")}</div>
+        ${(topicsOf(v.tm).length || ppl.length) ? `<div class="tags">${topicsOf(v.tm).map(tpill).join("")}${ppl.map(ppill).join("")}</div>` : ""}
+        <div class="why">${blurb ? esc(blurb) : `<span style="color:var(--fg2)">Sin descripción del canal.</span>`}</div>
+        ${blurb.length > 200 ? `<button class="more" id="moreBtn">Mostrar más</button>` : ""}
+      </div>
+    </div>
+    <div class="secondary"><h3>A continuación</h3>${upNext.map(vMini).join("")}</div></div>`;
+  const mb = $("#moreBtn");
+  if (mb) mb.onclick = () => { const d = $("#desc"); d.classList.toggle("clamp"); mb.textContent = d.classList.contains("clamp") ? "Mostrar más" : "Mostrar menos"; };
+  $("#nextBtn").onclick = playNext;
+  $("#autoNext").onchange = e => { autoplayNext = e.target.checked; LS.set("autoplayNext", autoplayNext); };
+  document.title = `${v.t} · ${META.title}`;
+  window.scrollTo(0, 0);
+  loadYT().then(() => {
+    if (location.hash !== `#/watch/${id}`) return;
+    player = new YT.Player("ytplayer", {
+      videoId: id,
+      playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+      events: { onStateChange: e => { if (e.data === YT.PlayerState.ENDED && autoplayNext) playNext(); } },
+    });
+  });
+  cleanup = () => { try { player && player.destroy(); } catch {} player = null; };
+}
+function playNext() { const v = upNext[0] || sampleMany("v", 1, {})[0]; if (v) location.hash = `#/watch/${v.id}`; }
+
+/* Lector de artículos */
+let readNext = [];
+const FS = [16, 17.5, 19, 21, 23];
+let fsIdx = LS.get("fsIdx", 2);
+function viewRead(id) {
+  const a = aById.get(id), main = $("#main");
+  if (!a) { main.innerHTML = `<div class="empty">Artículo no encontrado.</div>`; return; }
+  const p = P[a.pub];
+  markDone(id);
+  const samePub = byPub[p.i].filter(x => x.id !== id);
+  const idx = byPub[p.i].indexOf(a);
+  const neighbours = [byPub[p.i][idx - 1], byPub[p.i][idx + 1]].filter(Boolean);   // más reciente / anterior
+  const moreFrom = [...neighbours, ...shuffle(samePub.filter(x => !neighbours.includes(x))).slice(0, 4 - neighbours.length)];
+  readNext = sampleMany("a", 8, {}).filter(x => x.id !== id && x.pub !== p.i);
+  const ppl = peopleOf(a.pm);
+  main.innerHTML = `<div class="watch reader">
+    <article class="primary">
+      <div class="kicker">${av(p, "lg")}<div><a href="#/a/p/${p.i}">${esc(p.name)}</a>${p.author && p.author !== p.name ? `<div>${esc(p.author)}</div>` : ""}</div></div>
+      <h1>${esc(a.t)}</h1>
+      ${a.sub ? `<p class="dekbig">${esc(a.sub)}</p>` : ""}
+      <div class="byline"><span>${fmtDate(a.date)}</span>${a.min ? `<span>· ${a.min} min de lectura</span>` : ""}
+        <div class="actions">
+          <button class="pill" id="fsDown" title="Texto más pequeño">A−</button><button class="pill" id="fsUp" title="Texto más grande">A+</button>
+          <button class="pill primary" id="nextArt" title="Shift+N">Otra lectura ⏭</button>
+          <a class="pill" href="${esc(a.url)}" target="_blank" rel="noopener">Original ↗</a>
+        </div></div>
+      ${(topicsOf(a.tm).length || ppl.length) ? `<div class="tags" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">${topicsOf(a.tm).map(tpill).join("")}${ppl.map(ppill).join("")}</div>` : ""}
+      <div id="body">${a.has ? `<div class="skel" style="width:92%"></div><div class="skel"></div><div class="skel" style="width:80%"></div><div class="skel" style="width:95%"></div>` : nobody(a)}</div>
+      <div class="endcta">${a.has ? `<a class="pill" href="${esc(a.url)}" target="_blank" rel="noopener">Leer en ${esc(p.name)} ↗</a>` : ""}<button class="pill${a.has ? " primary" : ""}" id="nextArt2">Otra lectura al azar ⏭</button></div>
+    </article>
+    <aside class="secondary">
+      ${moreFrom.length ? `<h3>Más de ${esc(p.name)}</h3>${moreFrom.map(aMini).join("")}<div class="gap"></div>` : ""}
+      <h3>Siguiente lectura</h3>${readNext.map(aMini).join("")}
+    </aside></div>`;
+  const applyFs = () => { document.documentElement.style.setProperty("--fs", FS[fsIdx] + "px"); LS.set("fsIdx", fsIdx); };
+  applyFs();
+  $("#fsUp").onclick = () => { fsIdx = Math.min(FS.length - 1, fsIdx + 1); applyFs(); };
+  $("#fsDown").onclick = () => { fsIdx = Math.max(0, fsIdx - 1); applyFs(); };
+  $("#nextArt").onclick = $("#nextArt2").onclick = nextRead;
+  document.title = `${a.t} · ${p.name}`;
+  window.scrollTo(0, 0);
+  if (a.has) {
+    fetch(`data/a/${a.id}.json`).then(r => r.ok ? r.json() : Promise.reject(r.status)).then(d => {
+      if (location.hash !== `#/a/read/${id}`) return;
+      const coverInBody = a.cover && (d.h.includes(a.cover.split("/").pop().slice(0, 40)) || a.cover.includes("opengraph-image"));
+      $("#body").innerHTML = `${a.cover && !coverInBody ? `<img class="coverimg" src="${esc(a.cover)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}<div class="prose">${d.h}</div>`;
+    }).catch(() => { $("#body").innerHTML = nobody(a); });
+  }
+  const prog = $("#progress");
+  const onScroll = () => { const h = document.documentElement.scrollHeight - innerHeight; prog.style.width = h > 0 ? Math.min(100, scrollY / h * 100) + "%" : "0"; };
+  addEventListener("scroll", onScroll, { passive: true });
+  cleanup = () => { removeEventListener("scroll", onScroll); prog.style.width = "0"; };
+}
+function nobody(a) {
+  const p = P[a.pub];
+  return `<div class="nobody">${a.paid ? "🔒 Este artículo es <b>de pago</b>: solo puede leerse completo en su web."
+      : `Aquí tienes solo un resumen. El artículo completo está en <b>${esc(p.name)}</b>${a.min ? ` (${a.min} min de lectura)` : ""}.`}
+    <br><a class="pill primary" style="margin-top:12px" href="${esc(a.url)}" target="_blank" rel="noopener">Leer el artículo completo ↗</a></div>`;
+}
+function nextRead() { const a = readNext[0] || sampleMany("a", 1, {})[0]; if (a) location.hash = `#/a/read/${a.id}`; }
+
+/* Canal (vídeos) o publicación (artículos) */
+function viewSource(kind, i) {
+  const s = kind === "v" ? CH[i] : P[i], main = $("#main");
+  if (!s) { main.innerHTML = `<div class="empty">No encontrado.</div>`; return; }
+  const by = kind === "v" ? byCh : byPub;
+  let order = kind === "v" ? "shuffle" : "latest";
+  const person = s.persona ? PEOPLE.find(p => p.slug === s.persona) : null;
+  const orders = kind === "v" ? [["shuffle", "Aleatorio"], ["popular", "Populares"], ["latest", "Recientes"]] : [["latest", "Recientes"], ["shuffle", "Aleatorio"], ["oldest", "Más antiguos"], ["long", "Más largos"]];
+  main.innerHTML = `<div class="chhead">${av(s, "xl")}<div style="min-width:0">
+      <h1>${esc(s.name)}</h1>
+      <div class="sub">${kind === "a" && s.author ? esc(s.author) + " · " : ""}${s.subs ? fmtNum(s.subs) + " suscriptores · " : ""}${s.n.toLocaleString("es-ES")} ${kind === "v" ? "vídeos" : "artículos"}</div>
+      ${(s.topics.length || person) ? `<div class="tags">${s.topics.map(tpill).join("")}${person ? ppill(person) : ""}</div>` : ""}
+      ${s.blurb ? `<div class="blurb">${esc(s.blurb)}</div>` : ""}
+      <div class="actions">${s.url ? `<a class="pill" href="${esc(s.url)}" target="_blank" rel="noopener">${kind === "v" ? "Canal en YouTube" : "Web original"} ↗</a>` : ""}</div>
+    </div></div>
+    <div class="chips">${orders.map(([k, l]) => `<button class="chip${k === order ? " on" : ""}" data-o="${k}">${l}</button>`).join("")}</div>
+    <div class="feed"></div>`;
+  const feed = $(".feed", main);
+  let grid = null;
+  const rebuild = () => {
+    grid && grid.stop(); feed.replaceChildren();
+    const list = by[i].slice();
+    if (order === "shuffle") shuffle(list);
+    else if (order === "popular") list.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
+    else if (order === "oldest") list.reverse();
+    else if (order === "long") list.sort((a, b) => (b.min || 0) - (a.min || 0));
+    let pos = 0;
+    grid = infiniteGrid(feed, n => list.slice(pos, pos += n), x => card(kind, x, false));
+  };
+  main.querySelectorAll(".chip").forEach(b => b.onclick = () => { order = b.dataset.o; main.querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === b)); rebuild(); });
+  rebuild();
+  document.title = `${s.name} · ${META.title}`;
+  window.scrollTo(0, 0);
+  cleanup = () => grid && grid.stop();
+}
+
+function viewSearch(kind, q) {
+  const main = $("#main");
+  $("#q").value = q;
+  const terms = q.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").split(/\s+/).filter(Boolean);
+  const fold = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  let hits;
+  if (kind === "v") {
+    hits = V.filter(v => { const hay = fold(v.t + " " + CH[v.ch].name); return terms.every(t => hay.includes(t)); })
+      .sort((a, b) => (CH[b.ch].peso || 1) * Math.log10((b.views ?? 0) + 10) - (CH[a.ch].peso || 1) * Math.log10((a.views ?? 0) + 10));
+  } else {
+    hits = A.filter(a => { const p = P[a.pub]; const hay = fold(a.t + " " + a.sub + " " + p.name + " " + p.author); return terms.every(t => hay.includes(t)); })
+      .sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  }
+  main.innerHTML = `<h2 class="pagetitle">${hits.length.toLocaleString("es-ES")} ${kind === "v" ? "vídeos" : "artículos"} para “${esc(q)}”</h2>
+    <p class="pagesub"><a style="text-decoration:underline" href="${kind === "v" ? "#/a/search/" : "#/search/"}${encodeURIComponent(q)}">Buscar “${esc(q)}” en ${kind === "v" ? "artículos" : "vídeos"}</a></p><div class="feed"></div>`;
+  let pos = 0;
+  const grid = infiniteGrid($(".feed", main), n => hits.slice(pos, pos += n), x => card(kind, x, true), { emptyText: "Sin resultados." });
+  document.title = `${q} · ${META.title}`;
+  window.scrollTo(0, 0);
+  cleanup = () => grid.stop();
+}
+
+/* Personas */
+function viewPeople() {
+  $("#main").innerHTML = `<h2 class="pagetitle">Personas que me interesan</h2>
+    <p class="pagesub">Todo lo que menciona a cada persona: sus propios canales y blogs, entrevistas y conferencias encontradas en YouTube, y artículos que hablan de ellas.</p>
+    <div class="people">${PEOPLE.map(p => `<a class="pcard" href="#/p/${p.slug}">${pav(p)}<div style="min-width:0">
+      <h3>${esc(p.name)}</h3><p>${esc(p.bio)}</p><div class="n">${p.nv.toLocaleString("es-ES")} vídeos · ${p.na.toLocaleString("es-ES")} artículos</div></div></a>`).join("")}</div>`;
+  document.title = `Personas · ${META.title}`;
+  window.scrollTo(0, 0);
+}
+function viewPerson(slug, tab) {
+  const p = PEOPLE.find(x => x.slug === slug), main = $("#main");
+  if (!p) { main.innerHTML = `<div class="empty">Persona no encontrada.</div>`; return; }
+  const bit = 1 << p.i;
+  const vids = V.filter(v => v.pm & bit), arts = A.filter(a => a.pm & bit);
+  if (!tab) tab = vids.length || !arts.length ? "v" : "a";
+  const own = [...CH.filter(c => c.persona === slug).map(c => `<a class="pill" href="#/c/${c.i}">▶ ${esc(c.name)}</a>`), ...P.filter(x => x.persona === slug).map(x => `<a class="pill" href="#/a/p/${x.i}">✎ ${esc(x.name)}</a>`)];
+  let order = "popular";
+  main.innerHTML = `<div class="chhead">${pav(p, "xl")}<div style="min-width:0">
+      <h1>${esc(p.name)}</h1><div class="sub">${vids.length.toLocaleString("es-ES")} vídeos · ${arts.length.toLocaleString("es-ES")} artículos</div>
+      <div class="blurb">${esc(p.bio)}</div>${own.length ? `<div class="actions">${own.join("")}</div>` : ""}
+    </div></div>
+    <div class="chips"><button class="chip${tab === "v" ? " on" : ""}" data-t="v">Vídeos (${vids.length})</button><button class="chip${tab === "a" ? " on" : ""}" data-t="a">Artículos (${arts.length})</button>
+      <span class="chip sep"></span><button class="chip on" data-o="popular">Destacados</button><button class="chip" data-o="latest">Recientes</button><button class="chip" data-o="shuffle">Aleatorio</button></div>
+    <div class="feed"></div>`;
+  const feed = $(".feed", main);
+  let grid = null;
+  const rebuild = () => {
+    grid && grid.stop(); feed.replaceChildren();
+    const list = (tab === "v" ? vids : arts).slice();
+    if (order === "shuffle") shuffle(list);
+    else if (order === "latest") list.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    else if (tab === "v") list.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
+    else list.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    let pos = 0;
+    grid = infiniteGrid(feed, n => list.slice(pos, pos += n), x => card(tab, x, true), { emptyText: tab === "v" ? "Aún no hay vídeos de esta persona." : "Aún no hay artículos que la mencionen." });
+  };
+  main.querySelectorAll(".chip[data-t]").forEach(b => b.onclick = () => { tab = b.dataset.t; main.querySelectorAll(".chip[data-t]").forEach(x => x.classList.toggle("on", x === b)); rebuild(); });
+  main.querySelectorAll(".chip[data-o]").forEach(b => b.onclick = () => { order = b.dataset.o; main.querySelectorAll(".chip[data-o]").forEach(x => x.classList.toggle("on", x === b)); rebuild(); });
+  rebuild();
+  document.title = `${p.name} · ${META.title}`;
+  window.scrollTo(0, 0);
+  cleanup = () => grid && grid.stop();
+}
+
+function viewAbout() {
+  const own = CH.filter(c => !c.ext), ext = CH.filter(c => c.ext);
+  const topicStats = META.topics.map((t, i) => `<span class="stat"><i class="dot" style="background:${t.color};margin:0"></i>${esc(t.name)} <b>${V.filter(v => v.tm >> i & 1).length.toLocaleString("es-ES")}</b> vídeos · <b>${A.filter(a => a.tm >> i & 1).length.toLocaleString("es-ES")}</b> artículos</span>`).join("");
+  $("#main").innerHTML = `<div class="about">
+    <h1>Acerca de ${esc(META.title)}</h1>
+    <p>${esc(META.tagline)}</p>
+    <p>Una réplica personal de <a class="link" href="https://karpathy.ai/tristan-tube/" target="_blank" rel="noopener">TristanTube</a>, el visor que Andrej Karpathy construyó en un par de horas con Claude: un “YouTube” sin recomendaciones algorítmicas, hecho solo con canales elegidos a mano. Aquí, además, hay una segunda pestaña con los blogs y Substacks que sigo, y una sección de personas.</p>
+    <div class="stats"><span class="stat"><b>${own.length}</b> canales · <b>${V.filter(v => !CH[v.ch].ext).length.toLocaleString("es-ES")}</b> vídeos</span><span class="stat"><b>${ext.length}</b> canales externos (entrevistas) · <b>${V.filter(v => CH[v.ch].ext).length.toLocaleString("es-ES")}</b> vídeos</span><span class="stat"><b>${P.length}</b> blogs · <b>${A.length.toLocaleString("es-ES")}</b> artículos</span></div>
+    <div class="stats">${topicStats}</div>
+
+    <h2>Cómo elige “Para ti”</h2>
+    <ul>
+      <li>Primero se elige una fuente al azar, ponderada por su <b>peso</b> (1–5, en <code>sources.toml</code>). Los canales enormes no reciben más cuota, así que no ahogan a los pequeños.</li>
+      <li>Después se sacan dos piezas al azar de esa fuente y gana la más vista (vídeos) o la más reciente (artículos).</li>
+      <li>No se repite nada en la misma sesión y se prioriza lo que aún no has visto o leído. <b>⟳ Rebarajar</b> empieza un feed nuevo.</li>
+      <li><b>Novedades</b> muestra lo mismo en orden cronológico, por si quieres ponerte al día. No hace falta: no hay prisa.</li>
+    </ul>
+
+    <h2>Núcleos temáticos y personas</h2>
+    <p>Cada fuente tiene núcleos por defecto y, además, cada título se etiqueta automáticamente con palabras clave. Las <b>personas</b> se detectan por su nombre en títulos y textos; para cada una se buscan además entrevistas y conferencias en YouTube.</p>
+
+    <h2>Teclado</h2>
+    <ul>
+      <li><kbd>Shift</kbd> + <kbd>N</kbd>: algo al azar (o lo siguiente mientras ves/lees)</li>
+      <li><kbd>/</kbd>: buscar &nbsp; <kbd>T</kbd>: modo TV &nbsp; <kbd>V</kbd> / <kbd>A</kbd>: pestaña Vídeos / Artículos</li>
+    </ul>
+    <h2>Modo TV</h2>
+    <p>Pulsa <kbd>T</kbd> o el botón de la tele: pantalla completa, un vídeo al azar tras otro, sin tocar nada. <kbd>N</kbd>/<kbd>P</kbd> siguiente/anterior, <kbd>Espacio</kbd> pausa, <kbd>←</kbd>/<kbd>→</kbd> ±10 s, <kbd>1</kbd>–<kbd>9</kbd> saltar al 10 %–90 %, <kbd>M</kbd> silencio, <kbd>Esc</kbd> salir.</p>
+
+    <h2>Datos</h2>
+    <p>Todo sale de un script (<code>build.py</code>) que lee <code>sources.toml</code>: los canales se listan con <a class="link" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> (historial completo, sin Shorts), los blogs por RSS y, en Substack, por su archivo público. Una GitHub Action lo vuelve a ejecutar cada semana y publica el resultado en GitHub Pages. Los vídeos se reproducen con el reproductor oficial de YouTube. De los artículos solo se muestra el título, la portada y un resumen breve escrito por su autor; para leerlos, cada uno enlaza a su web original.</p>
+    <p>Lo que marcas como visto o leído se guarda solo en este navegador.</p>
+    <p style="color:var(--fg2)">Última actualización: ${META.generated ? new Date(META.generated).toLocaleString("es-ES") : "—"}</p>
+  </div>`;
+  document.title = `Acerca de · ${META.title}`;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- Modo TV ---------- */
+const tv = { open: false, player: null, ready: false, hist: [], pos: -1, uiTimer: 0, toastTimer: 0, tick: 0, wentFull: false };
+const tvPick = () => sampleMany("v", 1, {})[0] || V[Math.random() * V.length | 0];
+const tvCurrent = () => tv.hist[tv.pos];
+function tvOpen() {
+  if (tv.open || !V.length) return;
+  const el = $("#tv");
+  if (el.requestFullscreen) el.requestFullscreen().then(() => { tv.wentFull = true; }).catch(() => {});
+  let first = null, startAt = 0;
+  const m = location.hash.match(/^#\/watch\/([\w-]{11})/);
+  if (m && vById.has(m[1])) { first = vById.get(m[1]); try { startAt = Math.floor(player.getCurrentTime() || 0); player.pauseVideo(); } catch {} }
+  first = first || tvPick();
+  Object.assign(tv, { open: true, ready: false, hist: [first], pos: 0, wentFull: false });
+  if (document.activeElement) document.activeElement.blur();
+  el.classList.add("open"); el.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  tvRenderInfo(); tvShowUI(6000);
+  $("#tvBar").insertAdjacentHTML("beforeend", [1, 2, 3, 4, 5, 6, 7, 8, 9].map(d => `<b style="left:${d * 10}%"></b>`).join(""));
+  loadYT().then(() => {
+    if (!tv.open) return;
+    tv.player = new YT.Player("tvplayer", {
+      videoId: first.id,
+      playerVars: { autoplay: 1, controls: 0, disablekb: 1, rel: 0, playsinline: 1, iv_load_policy: 3, fs: 0, start: startAt },
+      events: {
+        onReady: e => { tv.ready = true; e.target.playVideo(); },
+        onStateChange: e => { if (e.data === YT.PlayerState.ENDED) tvNext(); },
+        onError: () => { tvToast("No se puede reproducir, saltando…"); setTimeout(() => tv.open && tvNext(), 1500); },
+      },
+    });
+  });
+  tv.tick = setInterval(tvUpdateBar, 250);
+}
+function tvClose() {
+  if (!tv.open) return;
+  tv.open = false;
+  clearInterval(tv.tick); clearTimeout(tv.uiTimer); clearTimeout(tv.toastTimer);
+  try { tv.player && tv.player.destroy(); } catch {}
+  tv.player = null; tv.ready = false;
+  const el = $("#tv");
+  el.classList.remove("open", "show-ui"); el.setAttribute("aria-hidden", "true");
+  $(".tvplayer", el).innerHTML = `<div id="tvplayer"></div>`;
+  $("#tvBar").innerHTML = "<i></i>";
+  document.body.style.overflow = "";
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+}
+function tvLoad() { const v = tvCurrent(); markDone(v.id); if (tv.ready) tv.player.loadVideoById(v.id); tvRenderInfo(); tvShowUI(4000); }
+function tvNext() { if (tv.pos < tv.hist.length - 1) tv.pos++; else { tv.hist.push(tvPick()); tv.pos = tv.hist.length - 1; } tvLoad(); }
+function tvPrev() { if (tv.pos > 0) { tv.pos--; tvLoad(); } else tvToast("Es el primero"); }
+function tvRenderInfo() {
+  const v = tvCurrent(), c = CH[v.ch];
+  $("#tvTitle").textContent = v.t;
+  $("#tvChan").textContent = [c.name, fmtViews(v.views), fmtAgo(v.date)].filter(Boolean).join(" · ");
+  $("#tvDur").textContent = fmtDur(v.dur) || "0:00";
+  $("#tvCur").textContent = "0:00";
+  $("#tvBar i").style.width = "0";
+}
+function tvUpdateBar() {
+  if (!tv.ready || !$("#tv").classList.contains("show-ui")) return;
+  try {
+    const cur = tv.player.getCurrentTime() || 0, dur = tv.player.getDuration() || tvCurrent().dur || 0;
+    $("#tvCur").textContent = fmtDur(cur) || "0:00";
+    if (dur) { $("#tvDur").textContent = fmtDur(dur); $("#tvBar i").style.width = Math.min(100, cur / dur * 100) + "%"; }
+  } catch {}
+}
+function tvShowUI(ms = 3000) { const el = $("#tv"); el.classList.add("show-ui"); tvUpdateBar(); clearTimeout(tv.uiTimer); tv.uiTimer = setTimeout(() => el.classList.remove("show-ui"), ms); }
+function tvToast(msg) { const t = $("#tvToast"); t.textContent = msg; t.classList.add("on"); clearTimeout(tv.toastTimer); tv.toastTimer = setTimeout(() => t.classList.remove("on"), 900); }
+function tvTogglePause() {
+  if (!tv.ready) return;
+  const playing = tv.player.getPlayerState() === YT.PlayerState.PLAYING;
+  playing ? tv.player.pauseVideo() : tv.player.playVideo();
+  tvToast(playing ? "❚❚" : "▶"); tvShowUI(playing ? 600000 : 2500);
+}
+function tvSeek(seconds, label) {
+  if (!tv.ready) return;
+  const dur = tv.player.getDuration() || 0;
+  tv.player.seekTo(Math.max(0, Math.min(dur ? dur - 1 : seconds, seconds)), true);
+  if (tv.player.getPlayerState() !== YT.PlayerState.PLAYING) tv.player.playVideo();
+  tvToast(label); tvShowUI(2500);
+}
+function tvKey(e) {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key; let handled = true;
+  if (/^[0-9]$/.test(k)) { const d = +k, dur = tv.ready ? tv.player.getDuration() : 0; tvSeek(dur * d / 10, d === 0 ? "⏮ Inicio" : `${d * 10} %`); }
+  else if ("nN".includes(k) || k === "PageDown" || k === "MediaTrackNext") tvNext();
+  else if ("pP".includes(k) || k === "PageUp" || k === "MediaTrackPrevious") tvPrev();
+  else if (k === " " || "kK".includes(k) || k === "MediaPlayPause") tvTogglePause();
+  else if (k === "ArrowRight" || k === "l") tv.ready && tvSeek(tv.player.getCurrentTime() + 10, "+10 s");
+  else if (k === "ArrowLeft" || k === "j") tv.ready && tvSeek(tv.player.getCurrentTime() - 10, "−10 s");
+  else if ("mM".includes(k)) { if (tv.ready) { tv.player.isMuted() ? tv.player.unMute() : tv.player.mute(); tvToast(tv.player.isMuted() ? "🔇" : "🔊"); } }
+  else if (k === "Escape" || "tT".includes(k)) tvClose();
+  else { handled = false; tvShowUI(); }
+  if (handled) e.preventDefault();
+}
+$("#tvBtn").onclick = tvOpen;
+$("#tvExit").onclick = tvClose;
+$("#tv .tvcatch").onclick = tvTogglePause;
+$("#tv").addEventListener("mousemove", () => tv.open && tvShowUI(2500));
+document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && tv.open && tv.wentFull) tvClose(); });
+
+/* ---------- Router ---------- */
+function closeDrawer() { $("#side").classList.remove("open"); $("#backdrop").classList.remove("open"); }
+function route() {
+  cleanup(); cleanup = () => {};
+  closeDrawer();
+  const h = location.hash.replace(/^#\/?/, "");
+  if (!/^(a\/)?search\//.test(h)) $("#q").value = "";
+  $("#aboutBtn").classList.toggle("active", h === "about");
+  let m, kind = h === "a" || h.startsWith("a/") ? "a" : "v";
+  if (h === "personas" || h.startsWith("p/") || h === "about") kind = "p";
+  if (kind !== "p") curKind = kind;
+  setTab(kind === "p" ? (h === "about" ? "about" : "p") : kind);
+  if (kind === "p") renderSide(curKind);
+  if ((m = h.match(/^watch\/([\w-]{11})/))) { markSide(""); viewWatch(m[1]); }
+  else if ((m = h.match(/^c\/(\d+)/))) { markSide(`v:s${m[1]}`); viewSource("v", +m[1]); }
+  else if ((m = h.match(/^search\/(.*)/))) { markSide(""); viewSearch("v", decodeURIComponent(m[1])); }
+  else if (h === "recientes") { markSide("v:recent"); document.title = `Novedades · ${META.title}`; viewHome("v", true); }
+  else if ((m = h.match(/^a\/read\/(\w+)/))) { markSide(""); viewRead(m[1]); }
+  else if ((m = h.match(/^a\/p\/(\d+)/))) { markSide(`a:s${m[1]}`); viewSource("a", +m[1]); }
+  else if ((m = h.match(/^a\/search\/(.*)/))) { markSide(""); viewSearch("a", decodeURIComponent(m[1])); }
+  else if (h === "a/recientes") { markSide("a:recent"); document.title = `Novedades · ${META.title}`; viewHome("a", true); }
+  else if (h === "a") { markSide("a:home"); document.title = `Artículos · ${META.title}`; viewHome("a"); }
+  else if (h === "personas") { markSide("personas"); viewPeople(); }
+  else if ((m = h.match(/^p\/([\w-]+)(?:\/(v|a))?/))) { markSide("personas"); viewPerson(m[1], m[2]); }
+  else if (h === "about") { markSide(""); viewAbout(); }
+  else { markSide("v:home"); document.title = META.title; viewHome("v"); }
+}
+
+/* ---------- Arranque ---------- */
+const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(u + ": " + r.status); return r.json(); });
+Promise.all([getJSON("data/meta.json"), getJSON("data/videos.json"), getJSON("data/articles.json")]).then(([meta, vd, ad]) => {
+  META = meta;
+  document.title = META.title; $("#siteTitle").textContent = META.title;
+  CH = vd.channels.map((c, i) => ({ ...c, i }));
+  byCh = CH.map(() => []);
+  V = vd.videos.map(([id, t, dur, views, ch, tm, pm, date]) => ({ id, t, dur, views, ch, tm, pm, date }));
+  for (const v of V) { byCh[v.ch].push(v); vById.set(v.id, v); }
+  P = ad.pubs.map((p, i) => ({ ...p, i }));
+  byPub = P.map(() => []);
+  A = ad.articles.map(([id, t, sub, date, pub, min, cover, tm, pm, url, has, paid]) => ({ id, t, sub, date, pub, min, cover, tm, pm, url, has, paid }));
+  for (const a of A) { byPub[a.pub].push(a); aById.set(a.id, a); }
+  const PCOL = ["#ffb46b", "#c58cff", "#5fd4c4", "#ff9ad5", "#9be38a", "#7cc4ff", "#ffe066", "#ff7a7a"];
+  META.people.forEach((p, i) => {
+    const bit = 1 << i;
+    PEOPLE.push({ ...p, i, color: PCOL[i % PCOL.length], nv: V.filter(v => v.pm & bit).length, na: A.filter(a => a.pm & bit).length });
+  });
+  window.addEventListener("hashchange", route);
+  route();
+}).catch(err => {
+  $("#main").innerHTML = `<div class="empty">No se pudieron cargar los datos (${esc(err.message)}).<br>Sirve la carpeta por HTTP, p. ej. <code>python -m http.server -d site</code>, o ejecuta antes <code>python build.py</code>.</div>`;
+});
+
+// Enlaces a canal dentro de tarjetas (no se puede anidar <a> dentro de <a>)
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-href]");
+  if (t) { e.preventDefault(); e.stopPropagation(); location.hash = t.dataset.href; }
+}, true);
+$("#searchForm").onsubmit = e => {
+  e.preventDefault();
+  const q = $("#q").value.trim();
+  const isA = curKind === "a";
+  location.hash = q ? (isA ? "#/a/search/" : "#/search/") + encodeURIComponent(q) : (isA ? "#/a" : "#/");
+};
+$("#themeBtn").onclick = () => {
+  const root = document.documentElement;
+  const isLight = root.dataset.theme ? root.dataset.theme === "light" : matchMedia("(prefers-color-scheme: light)").matches;
+  root.dataset.theme = isLight ? "dark" : "light";
+  LS.set("theme", root.dataset.theme);
+};
+function lucky() {
+  if (curKind === "a") { const a = sampleMany("a", 1, {})[0]; if (a) location.hash = `#/a/read/${a.id}`; }
+  else { const v = sampleMany("v", 1, {})[0]; if (v) location.hash = `#/watch/${v.id}`; }
+}
+$("#luckyBtn").onclick = lucky;
+$("#menuBtn").onclick = () => { $("#side").classList.toggle("open"); $("#backdrop").classList.toggle("open"); };
+$("#backdrop").onclick = closeDrawer;
+document.addEventListener("keydown", e => {
+  if (tv.open) { tvKey(e); return; }
+  if (e.target.matches("input, textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === "t" || e.key === "T") { e.preventDefault(); tvOpen(); return; }
+  if (e.key === "N" && e.shiftKey) {
+    e.preventDefault();
+    if (location.hash.startsWith("#/watch/")) playNext();
+    else if (location.hash.startsWith("#/a/read/")) nextRead();
+    else lucky();
+  }
+  if (e.key === "/") { e.preventDefault(); $("#q").focus(); }
+  if (e.key === "v" && !e.shiftKey) location.hash = "#/";
+  if (e.key === "a" && !e.shiftKey) location.hash = "#/a";
+});
+</script>
+</body>
+</html>

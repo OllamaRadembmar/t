@@ -1,0 +1,109 @@
+{
+ "posts": {
+  "http://karpathy.github.io/2026/02/12/microgpt/": {
+   "t": "microgpt",
+   "url": "http://karpathy.github.io/2026/02/12/microgpt/",
+   "sub": "This is a brief guide to my new art project microgpt , a single file of 200 lines of pure Python with no dependencies that trains and inferences a GPT. This file contains the full algorithmic content…",
+   "date": "2026-02-12",
+   "cover": null,
+   "hasbody": true,
+   "words": 6521,
+   "ppl": [
+    "karpathy"
+   ]
+  },
+  "http://karpathy.github.io/2022/03/14/lecun1989/": {
+   "t": "Deep Neural Nets: 33 years ago and 33 years from now",
+   "url": "http://karpathy.github.io/2022/03/14/lecun1989/",
+   "sub": "The Yann LeCun et al. (1989) paper Backpropagation Applied to Handwritten Zip Code Recognition is I believe of some historical significance because it is, to my knowledge, the earliest real-world…",
+   "date": "2022-03-14",
+   "cover": null,
+   "hasbody": true,
+   "words": 2589,
+   "ppl": [
+    "karpathy"
+   ]
+  },
+  "http://karpathy.github.io/2021/06/21/blockchain/": {
+   "t": "A from-scratch tour of Bitcoin in Python",
+   "url": "http://karpathy.github.io/2021/06/21/blockchain/",
+   "sub": "I find blockchain fascinating because it extends open source software development to open source + state. This seems to be a genuine/exciting innovation in computing paradigms; We don’t just get to…",
+   "date": "2021-06-21",
+   "cover": null,
+   "hasbody": true,
+   "words": 16948,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2021/03/27/forward-pass/": {
+   "t": "Short Story on AI: Forward Pass",
+   "url": "http://karpathy.github.io/2021/03/27/forward-pass/",
+   "sub": "The inspiration for this short story came to me while reading Kevin Lacker’s Giving GPT-3 a Turing Test . It is probably worth it (though not required) to skim this post to get a bit of a background…",
+   "date": "2021-03-27",
+   "cover": null,
+   "hasbody": true,
+   "words": 1245,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2020/06/11/biohacking-lite/": {
+   "t": "Biohacking Lite",
+   "url": "http://karpathy.github.io/2020/06/11/biohacking-lite/",
+   "sub": "Throughout my life I never paid too much attention to health, exercise, diet or nutrition. I knew that you’re supposed to get some exercise and eat vegetables or something, but it stopped at that…",
+   "date": "2020-06-11",
+   "cover": null,
+   "hasbody": true,
+   "words": 5318,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2019/04/25/recipe/": {
+   "t": "A Recipe for Training Neural Networks",
+   "url": "http://karpathy.github.io/2019/04/25/recipe/",
+   "sub": "Some few weeks ago I posted a tweet on “the most common neural net mistakes”, listing a few common gotchas related to training neural nets. The tweet got quite a bit more engagement than I…",
+   "date": "2019-04-25",
+   "cover": null,
+   "hasbody": true,
+   "words": 3882,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2018/01/20/medium/": {
+   "t": "(started posting on Medium instead)",
+   "url": "http://karpathy.github.io/2018/01/20/medium/",
+   "sub": "The current state of this blog (with the last post 2 years ago) makes it look like I’ve disappeared. I’ve certainly become less active on blogs since I’ve joined Tesla, but whenever I do get a chance…",
+   "date": "2018-01-20",
+   "cover": null,
+   "hasbody": true,
+   "words": 91,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2016/09/07/phd/": {
+   "t": "A Survival Guide to a PhD",
+   "url": "http://karpathy.github.io/2016/09/07/phd/",
+   "sub": "This guide is patterned after my “Doing well in your courses” , a post I wrote a long time ago on some of the tips/tricks I’ve developed during my undergrad. I’ve received nice comments about that…",
+   "date": "2016-09-07",
+   "cover": null,
+   "hasbody": true,
+   "words": 8331,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2016/05/31/rl/": {
+   "t": "Deep Reinforcement Learning: Pong from Pixels",
+   "url": "http://karpathy.github.io/2016/05/31/rl/",
+   "sub": "--> This is a long overdue blog post on Reinforcement Learning (RL). RL is hot! You may have noticed that computers can now automatically learn to play ATARI games (from raw game pixels!), they are…",
+   "date": "2016-05-31",
+   "cover": null,
+   "hasbody": true,
+   "words": 7026,
+   "ppl": []
+  },
+  "http://karpathy.github.io/2015/11/14/ai/": {
+   "t": "Short Story on AI: A Cognitive Discontinuity.",
+   "url": "http://karpathy.github.io/2015/11/14/ai/",
+   "sub": "The idea of writing a collection of short stories has been on my mind for a while. This post is my first ever half-serious attempt at a story, and what better way to kick things off than with a story…",
+   "date": "2015-11-14",
+   "cover": null,
+   "hasbody": true,
+   "words": 8013,
+   "ppl": []
+  }
+ },
+ "updated": "2026-11-27T14:45:56+00:00"
+}

@@ -1,0 +1,394 @@
+# ============================================================================
+#  BlogTube · fuentes
+#  Este es el único archivo que necesitas tocar para añadir/quitar contenido.
+#  Después ejecuta:  python build.py   (o deja que GitHub Actions lo haga solo)
+#
+#  peso   = cuánto aparece una fuente en el feed "Para ti" (1 = poco … 5 = mucho)
+#  temas  = núcleos temáticos por defecto de la fuente (ver [[tema]] abajo).
+#           Además, cada vídeo/artículo se etiqueta solo por palabras clave.
+#  lang   = idioma en que YouTube devuelve los títulos ("es" o "en").
+# ============================================================================
+
+[site]
+title = "BlogTube"
+tagline = "Vídeos y lecturas que merecen la pena. Sin algoritmo, sin prisa."
+
+# ---------------------------------------------------------------------------
+#  Núcleos temáticos (chips de filtro). Las palabras clave se comparan sin
+#  acentos y en minúsculas contra título + subtítulo.
+# ---------------------------------------------------------------------------
+[[tema]]
+name = "Filosofía"
+color = "#c58cff"
+keywords = ["filosofia", "filosofo", "philosophy", "metafisica", "ontologia", "epistemolog", "etica", "nietzsche", "heidegger", "kant", "hegel", "platon", "aristoteles", "spinoza", "wittgenstein", "estoic", "existencial", "consciencia", "consciousness", "idealismo", "fenomenolog", "kastrup", "schopenhauer"]
+
+[[tema]]
+name = "Teoría de juegos"
+color = "#ffb46b"
+keywords = ["teoria de juegos", "game theory", "dilema del prisionero", "prisoner", "equilibrio de nash", "nash", "incentivo", "incentive", "mechanism design", "schelling", "coordinacion"]
+
+[[tema]]
+name = "Estrategia"
+color = "#ff7a7a"
+keywords = ["estrategia", "strategy", "estrateg", "geopolitic", "guerra", "sun tzu", "clausewitz", "maquiavelo", "poder", "negociacion", "decision", "liderazgo", "competencia"]
+
+[[tema]]
+name = "CPS"
+color = "#5fd4c4"
+keywords = ["cps", "complex problem solving", "problemas complejos", "complejidad", "complexity", "sistemas complejos", "pensamiento sistemico", "recuenco", "incertidumbre", "uncertainty"]
+
+[[tema]]
+name = "Literatura"
+color = "#ffe066"
+keywords = ["literatura", "literary", "novela", "novel", "poesia", "poeta", "poetry", "poem", "cervantes", "quijote", "shakespeare", "dostoievski", "borges", "filologia", "critica literaria", "libro", "libros", "book", "lectura", "traduccion", "translation", "escritor", "writer", "ensayo", "teatro", "junger"]
+
+[[tema]]
+name = "Cine"
+color = "#7cc4ff"
+keywords = ["cine", "pelicula", "peliculas", "film", "movie", "director", "kubrick", "tarkovski", "bergman", "hitchcock", "oscar", "trailer", "serie"]
+
+[[tema]]
+name = "IA"
+color = "#9be38a"
+keywords = ["inteligencia artificial", "ia", "ai", "artificial intelligence", "chatgpt", "gpt", "llm", "openai", "anthropic", "claude", "machine learning", "deep learning", "red neuronal", "neural", "transformer", "algoritmo", "robot"]
+
+[[tema]]
+name = "Psicología"
+color = "#ff9ad5"
+keywords = ["psicolog", "psychology", "psicoterapia", "terapia", "therapy", "ansiedad", "anxiety", "depresion", "mente", "mind", "emocion", "atencion", "attention", "meditacion", "mindfulness", "habito", "habit", "autoestima", "trauma", "aceptacion y compromiso", "cerebro", "brain", "neurociencia", "overthinking"]
+
+# ---------------------------------------------------------------------------
+#  Canales de YouTube  (pestaña "Vídeos")
+# ---------------------------------------------------------------------------
+[[canal]]
+name = "Pura Virtud: Cine y Literatura"
+id = "UCBmr6jkN6K6IorF7ACjz0Cg"
+temas = ["Cine", "Literatura"]
+peso = 4
+
+[[canal]]
+name = "Puro Vicio: Literatura y Cinefilia"
+id = "UCOdtU5ml0klF-Tyc3ungrEQ"
+temas = ["Literatura", "Cine"]
+peso = 4
+
+[[canal]]
+name = "Ernesto Castro"
+id = "UCd3FJ4k849ZtZXUL3MsXyOA"
+temas = ["Filosofía"]
+peso = 5
+
+[[canal]]
+name = "Aprendizaje Infinito · Sergio San Juan"
+id = "UCDyPgvGkBwm6PZzIQn7_eXw"
+temas = ["Psicología"]
+peso = 3
+
+[[canal]]
+name = "DECODE"
+id = "UCwxC10YfpASD-NxNY3_YX1Q"
+temas = ["Estrategia"]
+peso = 3
+
+[[canal]]
+name = "Stark Privacy"
+id = "UCiWK5LDY5nmnMpfGsL7KENQ"
+temas = []
+peso = 2
+
+[[canal]]
+name = "CPS Spain"
+id = "UCCNunNIggA_xClgq2mPmJxQ"
+temas = ["CPS"]
+peso = 5
+
+[[canal]]
+name = "ADEH TV"
+id = "UCRaVE4HC0N86FZzgcw5WU-Q"
+temas = ["Literatura"]
+peso = 4
+
+[[canal]]
+name = "Jesús G. Maestro"
+id = "UCfWWjBMY6zpvvU6wAe5j_Eg"
+temas = ["Literatura", "Filosofía"]
+peso = 5
+
+[[canal]]
+name = "Essentia Foundation"
+id = "UCHKZdDf09_8vVHm102fu0sg"
+temas = ["Filosofía"]
+peso = 4
+lang = "en"
+
+[[canal]]
+name = "SensaCine"
+id = "UCJYVHccXMzmaYeqDglwtRdA"
+temas = ["Cine"]
+peso = 1
+
+[[canal]]
+name = "Alex Fidalgo · Lo que tú digas"
+id = "UCcpOe_g8sfr2GSoLZISy6yA"
+temas = ["Psicología"]
+peso = 3
+
+[[canal]]
+name = "Mitos y Mentes"
+id = "UCa1fgYaJ1uCIzW8GhlNH6mw"
+temas = ["Filosofía", "Estrategia"]
+peso = 3
+
+[[canal]]
+name = "Kapital"
+id = "UCp1bEiD2m_Dd5FkDwIqefcQ"
+temas = ["Estrategia"]
+peso = 3
+
+[[canal]]
+name = "La Encrucijada"
+id = "UCYA2pNyyydHUuNijFTPn-fA"
+temas = ["Filosofía"]
+peso = 4
+
+[[canal]]
+name = "Editar y Traducir"
+id = "UCQjjyECsTLgRhvOasvFosrg"
+temas = ["Literatura"]
+peso = 4
+
+[[canal]]
+name = "Habitar la Tierra"
+id = "UCoc8awSS79r74qbfeUBR-rg"
+temas = ["Filosofía"]
+peso = 3
+
+[[canal]]
+name = "Andrej Karpathy"
+id = "UCXUPKJO5MZQN11PqgIvyuvQ"
+temas = ["IA"]
+peso = 3
+lang = "en"
+persona = "karpathy"
+
+# ---------------------------------------------------------------------------
+#  Substack / blogs  (pestaña "Artículos")
+#  substack = true  → además del RSS se indexa el archivo completo.
+# ---------------------------------------------------------------------------
+[[blog]]
+name = "Aprendizaje Infinito"
+author = "Sergio San Juan"
+feed = "https://aprendizajeinfinito.substack.com/feed"
+substack = true
+temas = ["Psicología"]
+peso = 4
+
+[[blog]]
+name = "Sapienciología"
+author = "Sergio Parra"
+feed = "https://sergioparra.substack.com/feed"
+substack = true
+temas = []
+peso = 4
+
+[[blog]]
+name = "The Structuralist (Incentivising)"
+author = "Incentivising"
+feed = "https://incentivising.substack.com/feed"
+substack = true
+temas = ["Teoría de juegos", "Estrategia"]
+peso = 5
+
+[[blog]]
+name = "DeepTech & Science"
+author = "Pep Martorell"
+feed = "https://pepmartorell.substack.com/feed"
+substack = true
+temas = ["IA"]
+peso = 4
+
+[[blog]]
+name = "Guillermo Mas Arellano"
+author = "Guillermo Mas Arellano"
+feed = "https://guillermomasarellano.substack.com/feed"
+substack = true
+temas = ["Literatura"]
+peso = 4
+
+[[blog]]
+name = "F*ck Simple"
+author = "Asociación CPS"
+feed = "https://asociacioncps.substack.com/feed"
+substack = true
+temas = ["CPS"]
+peso = 5
+
+[[blog]]
+name = "future/proof"
+author = "Dan Koe"
+feed = "https://letters.thedankoe.com/feed"
+substack = true
+temas = ["Estrategia", "Psicología"]
+peso = 2
+
+[[blog]]
+name = "Existential Espresso"
+author = "Recovering Overthinker"
+feed = "https://existentialespresso.substack.com/feed"
+substack = true
+temas = ["Psicología"]
+peso = 3
+
+[[blog]]
+name = "Fake Noûs"
+author = "Michael Huemer"
+feed = "https://fakenous.substack.com/feed"
+substack = true
+temas = ["Filosofía"]
+peso = 4
+
+[[blog]]
+name = "Tech World With Milan"
+author = "Dr Milan Milanović"
+feed = "https://newsletter.techworld-with-milan.com/feed"
+substack = true
+temas = ["IA"]
+peso = 2
+
+# Blogs propios de "personas que me interesan"
+[[blog]]
+name = "karpathy (Bear Blog)"
+author = "Andrej Karpathy"
+feed = "https://karpathy.bearblog.dev/feed/"
+temas = ["IA"]
+peso = 3
+persona = "karpathy"
+
+[[blog]]
+name = "Andrej Karpathy blog"
+author = "Andrej Karpathy"
+feed = "https://karpathy.github.io/feed.xml"
+temas = ["IA"]
+peso = 3
+persona = "karpathy"
+
+[[blog]]
+name = "balajis.com"
+author = "Balaji Srinivasan"
+feed = "https://balajis.com/feed"
+substack = true
+temas = ["Estrategia"]
+peso = 2
+persona = "balaji"
+
+[[blog]]
+name = "The Antidote"
+author = "Carissa Véliz"
+feed = "https://carissaveliz.substack.com/feed"
+substack = true
+temas = ["Filosofía", "IA"]
+peso = 4
+persona = "veliz"
+
+[[blog]]
+name = "Poetic Outlaws"
+author = "Poetic Outlaws"
+feed = "https://poeticoutlaws.substack.com/feed"
+substack = true
+temas = ["Literatura"]
+peso = 3
+persona = "poetic-outlaws"
+
+# ---------------------------------------------------------------------------
+#  Personas que me interesan
+#  match  = cómo se reconoce su nombre en títulos (sin acentos, minúsculas).
+#  buscar = búsquedas en YouTube para traer entrevistas/conferencias sobre ellas.
+# ---------------------------------------------------------------------------
+[[persona]]
+slug = "veliz"
+name = "Carissa Véliz"
+bio = "Filósofa (Oxford). Privacidad, ética de la IA y poder de los datos."
+match = ["carissa veliz", "veliz"]
+buscar = ["Carissa Véliz", "Carissa Véliz privacidad"]
+
+[[persona]]
+slug = "dors"
+name = "Pablo d'Ors"
+bio = "Sacerdote y escritor. Biografía del silencio, meditación y escritura."
+match = ["pablo d'ors", "pablo d ors", "pablo dors", "d'ors"]
+buscar = ["Pablo d'Ors", "Pablo d'Ors entrevista silencio"]
+
+[[persona]]
+slug = "castellanos"
+name = "Nazareth Castellanos"
+bio = "Neurocientífica. Cuerpo, cerebro, atención y meditación."
+match = ["nazareth castellanos"]
+buscar = ["Nazareth Castellanos", "Nazareth Castellanos conferencia"]
+
+[[persona]]
+slug = "hayes"
+name = "Steven Hayes"
+bio = "Psicólogo, creador de la Terapia de Aceptación y Compromiso (ACT)."
+match = ["steven hayes", "steve hayes", "steven c. hayes"]
+buscar = ["Steven Hayes ACT acceptance commitment therapy", "Steven Hayes psychological flexibility"]
+
+[[persona]]
+slug = "gomez-marin"
+name = "Álex Gómez-Marín"
+bio = "Físico y neurocientífico. Consciencia, mente y los límites del materialismo."
+match = ["gomez-marin", "gomez marin"]
+buscar = ["Álex Gómez-Marín", "Alex Gomez-Marin consciousness"]
+
+[[persona]]
+slug = "poetic-outlaws"
+name = "Poetic Outlaws"
+bio = "Literatura, poesía y vida al margen."
+match = ["poetic outlaws"]
+buscar = ["Poetic Outlaws"]
+
+[[persona]]
+slug = "karpathy"
+name = "Andrej Karpathy"
+bio = "Investigador de IA. Redes neuronales, LLMs y software 2.0. Inspirador de este proyecto."
+match = ["karpathy"]
+buscar = ["Andrej Karpathy interview"]
+
+[[persona]]
+slug = "balaji"
+name = "Balaji Srinivasan"
+bio = "Tecnólogo y ensayista. The Network State, cripto y estrategia."
+match = ["balaji"]
+buscar = ["Balaji Srinivasan"]
+
+[[persona]]
+slug = "recuenco"
+name = "Javier Recuenco"
+bio = "Fundador de la Asociación CPS. Resolución de problemas complejos."
+match = ["recuenco"]
+buscar = ["Javier Recuenco", "Javier Recuenco CPS"]
+
+[[persona]]
+slug = "junger"
+name = "Ernst Jünger"
+bio = "Escritor alemán (1895-1998). Tempestades de acero, La emboscadura."
+match = ["junger", "ernst junger"]
+buscar = ["Ernst Jünger", "Ernst Jünger La emboscadura"]
+
+[[persona]]
+slug = "schmitt"
+name = "Carl Schmitt"
+bio = "Jurista y teórico político (1888-1985). Lo político, amigo/enemigo, soberanía."
+match = ["carl schmitt", "schmitt"]
+buscar = ["Carl Schmitt", "Carl Schmitt filosofía política"]
+
+# Hilos de X de Javier G. Recuenco, recopilados en El Turrero Post (no tiene RSS: lector propio)
+[[blog]]
+name = "Las turras de Recuenco"
+author = "Javier G. Recuenco"
+tipo = "turrero"
+url = "https://turrero.vercel.app"
+solo_autor = "Recuenco"
+temas = ["CPS"]
+peso = 5
+persona = "recuenco"
+blurb = "Hilos de Javier G. Recuenco sobre CPS, complejidad, estrategia y Factor X, recopilados en El Turrero Post."

@@ -1,0 +1,243 @@
+{
+ "order": [
+  "l1loP5nUecY",
+  "p9PcEWLFUrc",
+  "8AJW2Sl5Q1E",
+  "C658wdLtAII",
+  "1PAR1NdB2g8",
+  "w4M08v_PwWA",
+  "BfXoEHV9ws0",
+  "sdlLVbEESEk",
+  "d5LQwNwdwRY",
+  "eVnXY4LFGJo",
+  "IcjAnTCJ7uk",
+  "NZV2poXfAD8",
+  "KI7fYCXd3Gw",
+  "39TufWMb9Q8",
+  "6AClQ2nocp4",
+  "Ew68QCLTEsI",
+  "2ra02HAOrfc",
+  "4lbcWav-oWg",
+  "5OesTyMJL9s",
+  "tuzv8lB453M",
+  "rZgROiycaf4",
+  "nwGJQEeIyF8",
+  "WSee9YnqYCQ",
+  "SpW_KoBWSHg",
+  "UMANhrfHsq8",
+  "4mN5YO_ryl0",
+  "oBHCD1zNaos",
+  "bKj6NweF2Yk",
+  "5GONDpLHwNE",
+  "wH1oS9qKwds",
+  "Yj4je6Z9diA",
+  "y_5jlBAKubA",
+  "UtMXRw2-ffM"
+ ],
+ "videos": {
+  "l1loP5nUecY": {
+   "t": "La ecología de los medios, con Carlos A. Scolari (UPF) | A29.",
+   "d": 4261,
+   "v": 81,
+   "date": "2026-11-26"
+  },
+  "p9PcEWLFUrc": {
+   "t": "Entrenamiento mental, con Pablo Castañeda (Smart Sapiens) | A28.",
+   "d": 5655,
+   "v": 693,
+   "date": null
+  },
+  "8AJW2Sl5Q1E": {
+   "t": "La psicología de la atención, con Javier Hernández Ferrón (psicólogo sanitario y del deporte) | A27.",
+   "d": 6714,
+   "v": 405,
+   "date": null
+  },
+  "C658wdLtAII": {
+   "t": "El antídoto de Simone Weil contra la distracción, la polarización y la falta de sentido",
+   "d": 858,
+   "v": 332,
+   "date": null
+  },
+  "1PAR1NdB2g8": {
+   "t": "Recuperar la atención para volver a leer, con Joan Gallardo. A26.",
+   "d": 4826,
+   "v": null,
+   "date": null
+  },
+  "w4M08v_PwWA": {
+   "t": "¿Quién tiene tiempo para pararse a pensar?",
+   "d": 382,
+   "v": 251,
+   "date": null
+  },
+  "BfXoEHV9ws0": {
+   "t": "Aprender a través de los libros, con Jaume Vilaseca (Bookstraping) | A25.",
+   "d": 2432,
+   "v": 394,
+   "date": null
+  },
+  "sdlLVbEESEk": {
+   "t": "Cómo leer más rápido (sin sacrificar comprensión)",
+   "d": 375,
+   "v": 429,
+   "date": null
+  },
+  "d5LQwNwdwRY": {
+   "t": "Cómo aprende el individuo soberano, con Adolfo Contreras (Muloko) | A24.",
+   "d": 6290,
+   "v": 1800,
+   "date": null
+  },
+  "eVnXY4LFGJo": {
+   "t": "Un plan para recuperar la soberanía de tu atención",
+   "d": 466,
+   "v": 263,
+   "date": null
+  },
+  "IcjAnTCJ7uk": {
+   "t": "Los pecados de la divulgación, el origen del lenguaje y la vida, con José M. M. Gázquez | A23.",
+   "d": 6983,
+   "v": 521,
+   "date": null
+  },
+  "NZV2poXfAD8": {
+   "t": "Ennoblecer la empresa con las humanidades, con David Criado (Vorpalina) | A22.",
+   "d": 6598,
+   "v": 550,
+   "date": null
+  },
+  "KI7fYCXd3Gw": {
+   "t": "Cómo transformar la educación, con Juan Freire (Éutica, TeamLabs, Tecnológico de Monterrey) | A21.",
+   "d": 5561,
+   "v": 486,
+   "date": null
+  },
+  "39TufWMb9Q8": {
+   "t": "La escuela del futuro (Instituto Tramontana), con Javier Cañada | A20.",
+   "d": 4235,
+   "v": 506,
+   "date": null
+  },
+  "6AClQ2nocp4": {
+   "t": "Cómo surfear la moral (si no sabemos qué está bien), con Sergio Parra (Sapienciología) | A19.",
+   "d": 7207,
+   "v": 1100,
+   "date": null
+  },
+  "Ew68QCLTEsI": {
+   "t": "Cómo utilizar la Inteligencia Artificial para vivir mejor, con Pablo Vázquez (Vida Inteligente) A18",
+   "d": 4494,
+   "v": 753,
+   "date": null
+  },
+  "2ra02HAOrfc": {
+   "t": "Cómo diseñar el futuro, con David Alayón (Tiempo de futuros) | A17",
+   "d": 6419,
+   "v": 524,
+   "date": null
+  },
+  "4lbcWav-oWg": {
+   "t": "La ética de Spinoza, con Vicente Serrano (profesor de filosofía) | A16.",
+   "d": 4064,
+   "v": 392,
+   "date": null
+  },
+  "5OesTyMJL9s": {
+   "t": "De la arquitectura a navegar la ola de la IA, con Ion Cuervas-Mons (CEO de Rauda AI) | A15",
+   "d": 4531,
+   "v": 462,
+   "date": null
+  },
+  "tuzv8lB453M": {
+   "t": "Enseñanza efectiva, el Quijote y cine en blanco y negro, Albert Reverter (McGuffin educativo) | A14",
+   "d": 5673,
+   "v": 632,
+   "date": null
+  },
+  "rZgROiycaf4": {
+   "t": "Humano, más humano, con Claudia Cuevas | A13",
+   "d": 5708,
+   "v": 1100,
+   "date": null
+  },
+  "nwGJQEeIyF8": {
+   "t": "Resolución de problemas complejos, IA y altas capacidades, con Javier G. Recuenco | A12",
+   "d": 5157,
+   "v": 18000,
+   "date": null
+  },
+  "WSee9YnqYCQ": {
+   "t": "Piensa claro para navegar la complejidad, con Kiko Llaneras (El País) | A11",
+   "d": 7523,
+   "v": 960,
+   "date": null
+  },
+  "SpW_KoBWSHg": {
+   "t": "Cómo curar la diabetes intelectual, con Marcos Vázquez (Fitness Revolucionario) | A10",
+   "d": 4438,
+   "v": 1000,
+   "date": null
+  },
+  "UMANhrfHsq8": {
+   "t": "El meollo de aprender en la complejidad, con Juan (el del blog) Fernández | A9",
+   "d": 3398,
+   "v": 796,
+   "date": null
+  },
+  "4mN5YO_ryl0": {
+   "t": "Violencia, sanidad, amistad y cuidado, con Cuca Casado (enfermera de urgencias) | A8",
+   "d": 6894,
+   "v": 514,
+   "date": null
+  },
+  "oBHCD1zNaos": {
+   "t": "Manifiesto de la atención soberana",
+   "d": 414,
+   "v": 231,
+   "date": null
+  },
+  "bKj6NweF2Yk": {
+   "t": "Invierte tu dinero sin comerte la cabeza, con François Derbaix (co-CEO de Indexa Capital) | A6",
+   "d": 5234,
+   "v": null,
+   "date": null
+  },
+  "5GONDpLHwNE": {
+   "t": "El arte de la política: capitalismo, piratería y un planeta llamado China, con Sergio Parra | A5",
+   "d": 7721,
+   "v": null,
+   "date": null
+  },
+  "wH1oS9qKwds": {
+   "t": "Cómo ayudar más y mejor con menos, con Pablo Melchor (presidente fundación Ayuda Efectiva) | A4",
+   "d": 4729,
+   "v": 153,
+   "date": null
+  },
+  "Yj4je6Z9diA": {
+   "t": "Cómo pensar mejor, con Val Muñoz de Bustillo (divulgador) | A3",
+   "d": 3450,
+   "v": 954,
+   "date": null
+  },
+  "y_5jlBAKubA": {
+   "t": "El lado oscuro de la moral, con Pablo Malo (psiquiatra evolucionista) | A2",
+   "d": 4964,
+   "v": 2900,
+   "date": null
+  },
+  "UtMXRw2-ffM": {
+   "t": "Cómo ser más sabio, con Sergio Parra | A1",
+   "d": 5034,
+   "v": 3100,
+   "date": null
+  }
+ },
+ "meta": {
+  "desc": "Domina tu atención en la era de las distracciones.",
+  "subs": null,
+  "url": "https://www.youtube.com/channel/UCDyPgvGkBwm6PZzIQn7_eXw"
+ },
+ "updated": "2026-11-27T12:29:14+00:00"
+}
