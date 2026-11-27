@@ -11,7 +11,7 @@
   "Toy26yF7XhM": {
    "t": "¿Sube la izquierda? Encuestas a diez días de las elecciones | Podcast ENTRE DATOS",
    "d": 2380,
-   "v": 42100,
+   "v": 42104,
    "ch": "EL PAÍS y EL PAÍS Pódcast",
    "chid": null,
    "date": null
@@ -19,7 +19,7 @@
   "QxM4HiQYVw8": {
    "t": "¿Cómo están cambiando las ENCUESTAS tras el ACCIDENTE? | Podcast ENTRE DATOS, con Kiko Llaneras",
    "d": 2919,
-   "v": 24922,
+   "v": 24916,
    "ch": "EL PAÍS y EL PAÍS Pódcast",
    "chid": null,
    "date": null
@@ -27,7 +27,7 @@
   "kIdpbVs2Hso": {
    "t": "¿Por qué vivimos mejor, pero no te puedes independizar? - con Kiko Llaneras, ingeniero de datos",
    "d": 4642,
-   "v": 3622,
+   "v": 3624,
    "ch": "EL PODCAST DE DRUNI",
    "chid": "UCVEpVOwG9c5n2EwPNqwEagg",
    "date": null
@@ -35,7 +35,7 @@
   "-v2Ue2No6MU": {
    "t": "El primer análisis | Kiko Llaneras, sobre la encuesta del CIS: \"Lo denunciable es que después de ...",
    "d": 303,
-   "v": 36955,
+   "v": 36957,
    "ch": "SER Podcast",
    "chid": "UC3vDuKX_LFw1W3lSqhNvdiQ",
    "date": null
@@ -43,7 +43,7 @@
   "u1MHEsuGz-I": {
    "t": "RUTA 29N | Programa de análisis de la última semana de campaña electoral | EL PAÍS",
    "d": 3465,
-   "v": 78363,
+   "v": 78355,
    "ch": "EL PAÍS",
    "chid": "UCnsvJeZO4RigQ898WdDNoBw",
    "date": null
@@ -75,7 +75,7 @@
   "zQvWJPPV1Ok": {
    "t": "RUTA 23J | Kiko Llaneras analiza las provincias en las que se juegan los últimos escaños | EL PAÍS",
    "d": 441,
-   "v": 12442,
+   "v": 12443,
    "ch": "EL PAÍS",
    "chid": "UCnsvJeZO4RigQ898WdDNoBw",
    "date": null
@@ -91,7 +91,7 @@
   "RvVoLS5WKFE": {
    "t": "Por Qué El 29-N Cambiará España | Kiko Llaneras",
    "d": 6061,
-   "v": 30669,
+   "v": 30667,
    "ch": "Dime Con Quién Hablas",
    "chid": "UCPUsRw6V6ey9qKOTHcKx_Gw",
    "date": null
@@ -211,7 +211,7 @@
   "Q4dV5Gz_CPc": {
    "t": "Kiko Llaneras, analista de datos: \"El PSOE lleva subiendo toda la campaña\" - Al Rojo Vivo",
    "d": 392,
-   "v": 26736,
+   "v": 26743,
    "ch": "laSexta",
    "chid": "UCh1OgMIWOlDBhFEYL3DHWjQ",
    "date": null
@@ -327,7 +327,63 @@
    "ch": "Jungle Prodigioso Volcán",
    "chid": "UCi2gt0hJckU7RArbiw7g3Mw",
    "date": null
+  },
+  "3R88Hac1Kdo": {
+   "t": "Del DATO al CRITERIO, con Kiko LLaneras | Mi Yo Futuro",
+   "d": 3205,
+   "v": 221,
+   "ch": "Diego Valero",
+   "chid": "UCnrlEK6IdlAvilZirPCPAKg",
+   "date": null
+  },
+  "f5KuykhEgj0": {
+   "t": "Conferencia Kiko Llaneras",
+   "d": 3589,
+   "v": 69,
+   "ch": "Ciudad de Málaga",
+   "chid": "UCtV619JKDq2KN1sUzsMqKxQ",
+   "date": null
+  },
+  "rvIXv6NfvZs": {
+   "t": "#Datos y #periodismo Kiko Llaneras: \"Piensa claro\" para entender el mundo",
+   "d": 1608,
+   "v": 190,
+   "ch": "CátedraA de Adriana Amado",
+   "chid": "UCynNLHu472aAViC53PTUIcA",
+   "date": null
+  },
+  "5zx5PMueiho": {
+   "t": "'Piensa claro'. Encuentro con Kiko Llaneras",
+   "d": 3801,
+   "v": 2615,
+   "ch": "Espacio Fundación Telefónica Madrid",
+   "chid": "UC_LQrLv47K0Fd3k2MB1kBRQ",
+   "date": null
+  },
+  "zFuNBM_JVqg": {
+   "t": "Hoy por Hoy Magazine | Vacaciones de los españoles, lo de Carolina Yuste, Pepe: el barbero y peri...",
+   "d": 5618,
+   "v": 36,
+   "ch": "SER Podcast",
+   "chid": "UC3vDuKX_LFw1W3lSqhNvdiQ",
+   "date": null
+  },
+  "8ZcSvOoCYU0": {
+   "t": "Hoy por Hoy Magazine | Historias de porterías, la llegada del semáforo, asalto al tren de Glasglo...",
+   "d": 5822,
+   "v": 39,
+   "ch": "SER Podcast",
+   "chid": "UC3vDuKX_LFw1W3lSqhNvdiQ",
+   "date": null
+  },
+  "CwdOSimhCJk": {
+   "t": "Ocio, cultura y prescripción en la sociedad digital: El Caso Babelia",
+   "d": 4034,
+   "v": 113,
+   "ch": "OrtegaygassetTV",
+   "chid": "UCloKe9xofM-ggzDHtIxNhQQ",
+   "date": null
   }
  },
- "updated": "2026-11-27T21:53:50+00:00"
+ "updated": "2026-11-27T21:56:49+00:00"
 }

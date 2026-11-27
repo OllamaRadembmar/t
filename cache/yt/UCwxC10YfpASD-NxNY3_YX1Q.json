@@ -1,5 +1,6 @@
 {
  "order": [
+  "-Nw5qOXX7a0",
   "wKyBlBBHFeM",
   "Cz1QIbscBDQ",
   "Rx2ZN_iZoZ4",
@@ -244,91 +245,91 @@
   "wKyBlBBHFeM": {
    "t": "GTA6: LA REACCIÓN de un PROFESIONAL | DECODE T3 EP37",
    "d": 2147,
-   "v": 89802,
+   "v": 101246,
    "date": "2026-11-25"
   },
   "Cz1QIbscBDQ": {
    "t": "SABOTAJE en EUROPA: ¿Quién nos ATACA? | DECODE T3 Ep36",
    "d": 3191,
-   "v": 45185,
+   "v": 46841,
    "date": "2026-11-24"
   },
   "Rx2ZN_iZoZ4": {
    "t": "CRASH en la BOLSA - Qué pasó y qué hacer? | DECOCE T3 Ep35",
    "d": 3190,
-   "v": 72343,
+   "v": 72624,
    "date": "2026-11-23"
   },
   "OKEmr807RGo": {
    "t": "¿Por qué nos gustan los videojuegos violentos? | DECODE T3 Ep34",
    "d": 2146,
-   "v": 24424,
+   "v": 24551,
    "date": "2026-11-20"
   },
   "EscSqSd0t_4": {
    "t": "Por qué GTA VI es un fenómeno | DECODE T3 Ep33",
    "d": 2598,
-   "v": 108602,
+   "v": 108873,
    "date": "2026-11-18"
   },
   "9z5qV1sWR_4": {
    "t": "Los LIOS de JENSEN HUANG: ¿NVIDIA en PELIGRO? | DECODE T3 Ep32",
    "d": 2089,
-   "v": 97770,
+   "v": 97930,
    "date": "2026-11-16"
   },
   "y1WXp6746mA": {
    "t": "¿PROHIBIMOS LAS REDES SOCIALES? | DECODE T3 Ep32",
    "d": 3159,
-   "v": 77151,
+   "v": 77265,
    "date": "2026-11-14"
   },
   "QPW-Kjq5ORU": {
    "t": "ABASCAL no quiere ENTREVISTAS | DECODE T3 Ep30",
    "d": 1565,
-   "v": 87459,
+   "v": 87499,
    "date": "2026-11-12"
   },
   "MetClSwZioc": {
    "t": "BRONCANO vs ABASCAL: mi REACCIÓN | DECODE T3 Ep29",
    "d": 865,
-   "v": 109722,
+   "v": 109742,
    "date": "2026-11-10"
   },
   "3apNLZSl6xY": {
    "t": "El FIN de la PROPIEDAD: NADA es TUYO | DECODE T3 Ep28",
    "d": 1614,
-   "v": 78989,
+   "v": 79190,
    "date": "2026-11-09"
   },
   "By2ECZZfHVs": {
    "t": "¿TRUMP ABANDONADO por los SUYOS? | DECODE T3 Ep28",
    "d": 2135,
-   "v": 119424,
+   "v": 119435,
    "date": "2026-11-06"
   },
   "o87hLTsROwA": {
    "t": "TRUMP FRACASA en las MIDTERMS | DECODE T3 Ep27",
    "d": 2764,
-   "v": 138322,
+   "v": 138328,
    "date": "2026-11-04"
   },
   "9bzUC7j7_DA": {
    "t": "Qué tienen en COMÚN todos los DESASTRES? | DECODE T3 Ep26",
    "d": 2084,
-   "v": 43395,
+   "v": 43405,
    "date": "2026-11-02"
   },
   "Bw4sVTdKygQ": {
    "t": "PARTE 2: Qué CAUSÓ el ACCIDENTE de TREN? | DECODE T3 Ep25",
    "d": 1992,
-   "v": 78197,
+   "v": 78206,
    "date": "2026-10-30"
   },
   "Fheyi387FBQ": {
    "t": "TRAGEDIA en ESPAÑA. ¿QUÉ causó el ACCIDENTE DE TREN? | DECODE T3 Ep24",
    "d": 2772,
-   "v": 158950,
+   "v": 158000,
    "date": "2026-10-29"
   },
   "QTHe0244lto": {
@@ -454,7 +455,7 @@
   "M-qc90yp8MQ": {
    "t": "PEDRO SÁNCHEZ: ¿HÉROE O TRAIDOR? | DECODE T3 Ep2",
    "d": 5193,
-   "v": 89000,
+   "v": 90000,
    "date": null
   },
   "J3yLUd4q_7Y": {
@@ -730,7 +731,7 @@
   "kOJpNy8hiG4": {
    "t": "DENTRO DE ARTEMIS, PARTE 1: El despegue",
    "d": 493,
-   "v": 2400,
+   "v": 2500,
    "date": null
   },
   "ewoOaoEDB9w": {
@@ -1674,6 +1675,12 @@
    "d": 910,
    "v": 2700,
    "date": null
+  },
+  "-Nw5qOXX7a0": {
+   "t": "El DESASTRE electoral que nadie QUIERE VER | DECODE T3 Ep38",
+   "d": 3043,
+   "v": 14942,
+   "date": "2026-11-27"
   }
  },
  "meta": {
@@ -1681,5 +1688,5 @@
   "subs": null,
   "url": "https://www.youtube.com/channel/UCwxC10YfpASD-NxNY3_YX1Q"
  },
- "updated": "2026-11-27T16:05:45+00:00"
+ "updated": "2026-11-27T21:56:00+00:00"
 }

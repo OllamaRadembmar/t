@@ -1,5 +1,6 @@
 {
  "order": [
+  "9H509GncnKA",
   "tZug9vaO2GA",
   "0FWNU3a6vDo",
   "Tgk03dH1vkI",
@@ -69,7 +70,7 @@
   "tZug9vaO2GA": {
    "t": "CPS Live 2026 - Diseñar para la incertidumbre: cómo construir organizaciones robustas–Sonia Montagud",
    "d": 1258,
-   "v": 337,
+   "v": 345,
    "date": "2026-11-19"
   },
   "0FWNU3a6vDo": {
@@ -99,7 +100,7 @@
   "9ubcXP1wDLs": {
    "t": "CPS Live 2026 - Geoestrategia como el “final boss” del CPS - Rogelio Villajos",
    "d": 1701,
-   "v": 443,
+   "v": 445,
    "date": "2026-10-18"
   },
   "E2a4tUbiHws": {
@@ -449,6 +450,12 @@
    "d": 3906,
    "v": 1200,
    "date": null
+  },
+  "9H509GncnKA": {
+   "t": "#CPS Sevilla - Víctor Gómez \"Cómo sobrevivir a la incertidumbre actual\"",
+   "d": 4394,
+   "v": 16,
+   "date": "2026-11-27"
   }
  },
  "meta": {
@@ -456,5 +463,5 @@
   "subs": null,
   "url": "https://www.youtube.com/channel/UCCNunNIggA_xClgq2mPmJxQ"
  },
- "updated": "2026-11-27T16:05:48+00:00"
+ "updated": "2026-11-27T21:56:03+00:00"
 }
