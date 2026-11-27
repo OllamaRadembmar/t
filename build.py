@@ -86,12 +86,13 @@ class Tagger:
     @staticmethod
     def _compile(kws, whole=False):
         parts = []
-        for k in kws:
-            k = norm(k).strip()
+        for raw in kws:
+            exact = raw.endswith("$")             # "dune$" → solo la palabra completa (no "Dunedin")
+            k = norm(raw.rstrip("$")).strip()
             if not k:
                 continue
             body = re.escape(k)
-            end = r"(?![a-z0-9])" if whole or len(k) <= 3 else ""   # palabras cortas: palabra completa
+            end = r"(?![a-z0-9])" if whole or exact or len(k) <= 3 else ""   # palabras cortas: palabra completa
             parts.append(r"(?<![a-z0-9])" + body + end)
         return re.compile("|".join(parts)) if parts else None
 
@@ -647,21 +648,24 @@ def main():
                          "topics": defaults, "peso": ch.get("peso", 3), "n": n, "blurb": ch.get("blurb") or meta.get("desc", ""),
                          "subs": meta.get("subs"), "persona": ch.get("persona")})
 
-    # vídeos traídos por búsquedas de personas (canales externos)
+    # vídeos traídos por búsquedas en YouTube (canales externos): de personas y de núcleos temáticos.
+    # Las búsquedas traen ruido, así que solo entra un vídeo si su título menciona a la persona o el tema.
+    searches = [(p, "personas", lambda t, bit=1 << pidx[p["slug"]]: tg.people(t) & bit) for p in personas]
+    for i, t in enumerate(temas):
+        if t.get("buscar") and tg.rx[i]:
+            pseudo = {"slug": "tema-" + slugify(t["name"]), "name": t["name"], "buscar": t["buscar"]}
+            searches.append((pseudo, "personas", lambda txt, rx=tg.rx[i]: rx.search(norm(txt))))
     ext = {}
-    for p in personas:
-        data = search_person(p) if want(p["name"], "personas") else load(CACHE / "people" / f"{p['slug']}.json")
+    for p, kind, accepts in searches:
+        data = search_person(p) if want(p["name"], kind) else load(CACHE / "people" / f"{p['slug']}.json")
         if not data:
             continue
-        bit = 1 << pidx[p["slug"]]
         for vid, v in data["videos"].items():
             if vid in seen_ids:
-                # ya está en un canal propio: solo marca la persona
+                continue          # ya está (en un canal propio o en otra búsqueda)
+            if not accepts(v["t"]) or not keep_video(v["t"], v.get("d"), min_global):
                 continue
-            # exige que el título mencione a la persona (las búsquedas traen ruido)
             pm = tg.people(v["t"])
-            if not pm & bit or not keep_video(v["t"], v.get("d"), min_global):
-                continue
             key = v.get("chid") or v.get("ch")
             if key not in ext:
                 ext[key] = len(channels)

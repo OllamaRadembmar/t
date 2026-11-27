@@ -23,7 +23,8 @@ excluir_titulos = ["trailer", "teaser", "promo"]
 
 # ---------------------------------------------------------------------------
 #  Núcleos temáticos (chips de filtro). Las palabras clave se comparan sin
-#  acentos y en minúsculas contra título + subtítulo.
+#  acentos y en minúsculas contra título + subtítulo. Por defecto cuentan como
+#  comienzo de palabra ("filosof" → filosofía); con "$" al final, palabra completa.
 # ---------------------------------------------------------------------------
 [[tema]]
 name = "Filosofía"
@@ -64,6 +65,38 @@ keywords = ["inteligencia artificial", "ia", "ai", "artificial intelligence", "c
 name = "Psicología"
 color = "#ff9ad5"
 keywords = ["psicolog", "psychology", "psicoterapia", "terapia", "therapy", "ansiedad", "anxiety", "depresion", "mente", "mind", "emocion", "atencion", "attention", "meditacion", "mindfulness", "habito", "habit", "autoestima", "trauma", "aceptacion y compromiso", "cerebro", "brain", "neurociencia", "overthinking"]
+
+# Núcleos con "buscar": además de etiquetar lo que ya llega de tus fuentes, se buscan
+# vídeos en YouTube y se añaden solo los que mencionan el tema en el título.
+[[tema]]
+name = "Dune"
+color = "#e9c46a"
+keywords = ["dune$", "frank herbert", "arrakis", "atreides", "harkonnen", "bene gesserit", "muad'dib", "fremen"]
+buscar = ["Dune Frank Herbert análisis", "Dune Frank Herbert filosofía", "Frank Herbert Dune analysis"]
+
+[[tema]]
+name = "Cyberpunk"
+color = "#ff4fd8"
+keywords = ["cyberpunk", "ciberpunk", "william gibson", "neuromante", "neuromancer", "ciberespacio", "cyberspace", "mona lisa overdrive", "count zero", "blade runner", "ghost in the shell", "johnny mnemonic"]
+buscar = ["William Gibson Neuromante", "cyberpunk William Gibson", "William Gibson interview cyberpunk"]
+
+[[tema]]
+name = "Filosofía de la técnica"
+color = "#8f9bff"
+keywords = ["filosofia de la tecnica", "filosofia de la tecnologia", "philosophy of technology", "pregunta por la tecnica", "question concerning technology", "meditacion de la tecnica", "ellul", "mumford", "simondon", "stiegler", "gunther anders", "transhumanis", "posthumanis", "tecnocracia", "technopoly", "neil postman", "mcluhan"]
+buscar = ["filosofía de la técnica", "Heidegger la pregunta por la técnica", "Jacques Ellul philosophy of technology"]
+
+[[tema]]
+name = "Crítica literaria hispánica"
+color = "#f4a259"
+keywords = ["filologia hispanica", "literatura espanola", "literatura hispanica", "literatura hispanoamericana", "hispanismo", "hispanista", "siglo de oro", "cervantes", "quijote", "lope de vega", "calderon de la barca", "quevedo", "gongora", "garcilaso", "san juan de la cruz", "galdos", "la regenta", "unamuno", "valle-inclan", "baroja", "azorin", "lorca", "antonio machado", "generacion del 98", "generacion del 27", "la celestina", "lazarillo", "critica de la razon literaria", "teoria de la literatura", "critica literaria"]
+buscar = ["crítica literaria literatura española", "filología hispánica conferencia literatura"]
+
+[[tema]]
+name = "Donoso Cortés"
+color = "#b0855c"
+keywords = ["donoso cortes", "juan donoso", "marques de valdegamas", "discurso sobre la dictadura", "ensayo sobre el catolicismo"]
+buscar = ["Donoso Cortés", "Juan Donoso Cortés pensamiento político"]
 
 # ---------------------------------------------------------------------------
 #  Canales de YouTube  (pestaña "Vídeos")
@@ -119,7 +152,7 @@ peso = 4
 [[canal]]
 name = "Jesús G. Maestro"
 id = "UCfWWjBMY6zpvvU6wAe5j_Eg"
-temas = ["Literatura", "Filosofía"]
+temas = ["Literatura", "Crítica literaria hispánica", "Filosofía"]
 peso = 5
 
 [[canal]]
@@ -178,6 +211,12 @@ temas = ["IA"]
 peso = 3
 lang = "en"
 persona = "karpathy"
+
+[[canal]]
+name = "Fundación Juan March"
+id = "UC6tnZjVb8hAsReWCoB4DaqA"
+temas = []
+peso = 4
 
 # ---------------------------------------------------------------------------
 #  Substack / blogs  (pestaña "Artículos")
@@ -389,6 +428,83 @@ bio = "Jurista y teórico político (1888-1985). Lo político, amigo/enemigo, so
 match = ["carl schmitt", "schmitt"]
 buscar = ["Carl Schmitt", "Carl Schmitt filosofía política"]
 
+[[persona]]
+slug = "dixit"
+name = "Avinash K. Dixit"
+bio = "Economista (Princeton). Teoría de juegos aplicada: Pensar estratégicamente, El arte de la estrategia."
+match = ["avinash dixit", "avinash k. dixit", "dixit"]
+buscar = ["Avinash Dixit game theory", "Avinash Dixit strategy"]
+
+[[persona]]
+slug = "llaneras"
+name = "Kiko Llaneras"
+bio = "Periodista de datos (El País). Pensar con números, probabilidad y sesgos."
+match = ["kiko llaneras", "llaneras"]
+buscar = ["Kiko Llaneras", "Kiko Llaneras entrevista"]
+
+[[persona]]
+slug = "parrish"
+name = "Shane Parrish"
+bio = "Farnam Street y The Knowledge Project. Modelos mentales y toma de decisiones."
+match = ["shane parrish", "farnam street", "the knowledge project"]
+buscar = ["Shane Parrish", "Shane Parrish mental models decision making"]
+
+[[persona]]
+slug = "stein"
+name = "Edith Stein"
+bio = "Filósofa fenomenóloga y santa (1891-1942). Sobre el problema de la empatía."
+match = ["edith stein", "teresa benedicta"]
+buscar = ["Edith Stein", "Edith Stein filosofía empatía"]
+
+[[persona]]
+slug = "tolstoi"
+name = "Lev Tolstói"
+bio = "Novelista ruso (1828-1910). Guerra y paz, Ana Karénina."
+match = ["tolstoi", "tolstoy", "ana karenina", "guerra y paz"]
+buscar = ["Tolstói", "Tolstói Guerra y paz análisis"]
+
+[[persona]]
+slug = "heidegger"
+name = "Martin Heidegger"
+bio = "Filósofo alemán (1889-1976). Ser y tiempo, la pregunta por la técnica."
+match = ["heidegger", "ser y tiempo"]
+buscar = ["Heidegger", "Heidegger Ser y tiempo explicación"]
+
+[[persona]]
+slug = "bueno"
+name = "Gustavo Bueno"
+bio = "Filósofo español (1924-2016). Materialismo filosófico."
+match = ["gustavo bueno", "materialismo filosofico"]
+buscar = ["Gustavo Bueno", "Gustavo Bueno materialismo filosófico"]
+
+[[persona]]
+slug = "girard"
+name = "René Girard"
+bio = "Antropólogo y crítico literario (1923-2015). Deseo mimético y chivo expiatorio."
+match = ["rene girard", "girard", "deseo mimetico", "mimetic desire"]
+buscar = ["René Girard", "René Girard deseo mimético"]
+
+[[persona]]
+slug = "william-james"
+name = "William James"
+bio = "Filósofo y psicólogo (1842-1910). Pragmatismo, Principios de psicología."
+match = ["william james"]
+buscar = ["William James pragmatism", "William James psicología filosofía"]
+
+[[persona]]
+slug = "hadot"
+name = "Pierre Hadot"
+bio = "Historiador de la filosofía (1922-2010). La filosofía como forma de vida, ejercicios espirituales."
+match = ["pierre hadot", "hadot"]
+buscar = ["Pierre Hadot", "Pierre Hadot filosofía como forma de vida"]
+
+[[persona]]
+slug = "spengler"
+name = "Oswald Spengler"
+bio = "Filósofo de la historia (1880-1936). La decadencia de Occidente."
+match = ["spengler", "decadencia de occidente", "decline of the west"]
+buscar = ["Oswald Spengler", "Spengler La decadencia de Occidente"]
+
 # Hilos de X de Javier G. Recuenco, recopilados en El Turrero Post (no tiene RSS: lector propio)
 [[blog]]
 name = "Las turras de Recuenco"
@@ -400,3 +516,11 @@ temas = ["CPS"]
 peso = 5
 persona = "recuenco"
 blurb = "Hilos de Javier G. Recuenco sobre CPS, complejidad, estrategia y Factor X, recopilados en El Turrero Post."
+
+[[blog]]
+name = "Farnam Street"
+author = "Shane Parrish"
+feed = "https://fs.blog/feed/"
+temas = ["Estrategia", "Psicología"]
+peso = 3
+persona = "parrish"
