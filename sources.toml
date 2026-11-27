@@ -13,6 +13,14 @@
 title = "BlogTube"
 tagline = "Vídeos y lecturas que merecen la pena. Sin algoritmo, sin prisa."
 
+# Vídeos que NO se muestran (los Shorts de YouTube ya se excluyen siempre):
+#  - más cortos que duracion_minima (en minutos). Un canal puede tener su propio
+#    valor poniendo  duracion_minima = N  dentro de su bloque [[canal]].
+#  - con alguna de estas palabras COMPLETAS en el título (sin acentos ni mayúsculas;
+#    "promo" no quita "promoción").
+duracion_minima = 5
+excluir_titulos = ["trailer", "teaser", "promo"]
+
 # ---------------------------------------------------------------------------
 #  Núcleos temáticos (chips de filtro). Las palabras clave se comparan sin
 #  acentos y en minúsculas contra título + subtítulo.

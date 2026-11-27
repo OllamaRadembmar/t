@@ -84,14 +84,14 @@ class Tagger:
         self.prx = [self._compile(p.get("match", [])) for p in personas]
 
     @staticmethod
-    def _compile(kws):
+    def _compile(kws, whole=False):
         parts = []
         for k in kws:
             k = norm(k).strip()
             if not k:
                 continue
             body = re.escape(k)
-            end = r"(?![a-z0-9])" if len(k) <= 3 else ""   # palabras cortas: palabra completa
+            end = r"(?![a-z0-9])" if whole or len(k) <= 3 else ""   # palabras cortas: palabra completa
             parts.append(r"(?<![a-z0-9])" + body + end)
         return re.compile("|".join(parts)) if parts else None
 
@@ -607,6 +607,20 @@ def main():
         return not args.only or args.only.lower() in name.lower()
 
     # ---- vídeos
+    site_cfg = cfg.get("site", {})
+    min_global = float(site_cfg.get("duracion_minima", 0)) * 60
+    excl = Tagger._compile(site_cfg.get("excluir_titulos", []), whole=True)
+    dropped = {"cortos": 0, "promo": 0}
+
+    def keep_video(title, dur, min_secs):
+        if excl and excl.search(norm(title)):
+            dropped["promo"] += 1
+            return False
+        if min_secs and dur and dur < min_secs:   # sin duración conocida (directos) → se queda
+            dropped["cortos"] += 1
+            return False
+        return True
+
     channels, videos, seen_ids = [], [], set()
     for ch in cfg.get("canal", []):
         data = fetch_channel(ch, args.full) if want(ch["name"], "videos") else load(CACHE / "yt" / f"{ch['id']}.json")
@@ -616,10 +630,13 @@ def main():
         ci = len(channels)
         defaults = tmask_defaults(ch)
         pbase = 1 << pidx[ch["persona"]] if ch.get("persona") in pidx else 0
+        min_secs = float(ch.get("duracion_minima", min_global / 60)) * 60
         n = 0
         for vid in data["order"]:
             v = data["videos"].get(vid)
             if not v or vid in seen_ids or not v.get("t") or v["t"] in ("[Private video]", "[Deleted video]"):
+                continue
+            if not keep_video(v["t"], v.get("d"), min_secs):
                 continue
             seen_ids.add(vid)
             videos.append([vid, v["t"], v.get("d") or 0, v.get("v"), ci, tg.topics(v["t"], defaults),
@@ -643,7 +660,7 @@ def main():
                 continue
             # exige que el título mencione a la persona (las búsquedas traen ruido)
             pm = tg.people(v["t"])
-            if not pm & bit:
+            if not pm & bit or not keep_video(v["t"], v.get("d"), min_global):
                 continue
             key = v.get("chid") or v.get("ch")
             if key not in ext:
@@ -715,7 +732,8 @@ def main():
     save(DATA / "meta.json", meta)
     save(DATA / "videos.json", {"channels": channels, "videos": videos}, compact=True)
     save(DATA / "articles.json", {"pubs": pubs, "articles": articles}, compact=True)
-    log(f"\n✓ {len(videos):,} vídeos de {len([c for c in channels if not c.get('ext')])} canales "
+    log(f"\n  vídeos excluidos: {dropped['cortos']:,} cortos (< {min_global / 60:g} min) · {dropped['promo']:,} promocionales")
+    log(f"✓ {len(videos):,} vídeos de {len([c for c in channels if not c.get('ext')])} canales "
         f"(+{len([c for c in channels if c.get('ext')])} externos) · {len(articles):,} artículos de {len(pubs)} blogs")
 
 
