@@ -22,37 +22,37 @@
   "EWvNQjAaOHw": {
    "t": "How I use LLMs",
    "d": 7872,
-   "v": 2996837,
+   "v": 2996854,
    "date": "2025-02-27"
   },
   "7xTGNNLPyMI": {
    "t": "Deep Dive into LLMs like ChatGPT",
    "d": 12684,
-   "v": 11102694,
+   "v": 11102848,
    "date": "2025-02-05"
   },
   "l8pRSuU81PU": {
    "t": "Let's reproduce GPT-2 (124M)",
    "d": 14486,
-   "v": 1251173,
+   "v": 1251181,
    "date": "2024-06-09"
   },
   "zduSFxRajkE": {
    "t": "Let's build the GPT Tokenizer",
    "d": 8015,
-   "v": 1280460,
+   "v": 1280468,
    "date": "2024-02-20"
   },
   "zjkBMFhNj_g": {
    "t": "[1hr Talk] Intro to Large Language Models",
    "d": 3588,
-   "v": 4430615,
+   "v": 4430651,
    "date": "2023-11-23"
   },
   "kCc8FmEb1nY": {
    "t": "Let's build GPT: from scratch, in code, spelled out.",
    "d": 6980,
-   "v": 8421247,
+   "v": 8421368,
    "date": "2023-01-17"
   },
   "t3YJ5hKiMQ0": {
@@ -76,13 +76,13 @@
   "TCH_1BHY58I": {
    "t": "Building makemore Part 2: MLP",
    "d": 4540,
-   "v": 622135,
+   "v": 622139,
    "date": "2022-09-12"
   },
   "PaCmpygFfXo": {
    "t": "The spelled-out intro to language modeling: building makemore",
    "d": 7065,
-   "v": 1343069,
+   "v": 1343078,
    "date": "2022-09-07"
   },
   "kVpDARqZdrQ": {
@@ -106,7 +106,7 @@
   "VMj-3S1tku0": {
    "t": "The spelled-out intro to neural networks and backpropagation: building micrograd",
    "d": 8752,
-   "v": 4549152,
+   "v": 4549198,
    "date": "2022-08-16"
   },
   "vEnetcj_728": {
@@ -127,5 +127,5 @@
   "subs": 1780000,
   "url": "https://www.youtube.com/channel/UCXUPKJO5MZQN11PqgIvyuvQ"
  },
- "updated": "2026-11-27T15:26:59+00:00"
+ "updated": "2026-11-27T15:38:34+00:00"
 }
