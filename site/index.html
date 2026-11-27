@@ -893,6 +893,7 @@ function viewAbout() {
     <p>Todo sale de un script (<code>build.py</code>) que lee <code>sources.toml</code>: los canales se listan con <a class="link" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a> (historial completo, sin Shorts), los blogs por RSS y, en Substack, por su archivo público. Una GitHub Action lo vuelve a ejecutar cada semana y publica el resultado en GitHub Pages. Los vídeos se reproducen con el reproductor oficial de YouTube. De los artículos solo se muestra el título, la portada y un resumen breve escrito por su autor; para leerlos, cada uno enlaza a su web original.</p>
     <p>Lo que marcas como visto o leído se guarda solo en este navegador.</p>
     <p style="color:var(--fg2)">Última actualización: ${META.generated ? new Date(META.generated).toLocaleString("es-ES") : "—"}</p>
+    ${/^(localhost|127\.)/.test(location.hostname) ? "" : `<p><a class="pill" href="/logout">Cerrar sesión</a></p>`}
   </div>`;
   document.title = `Acerca de · ${META.title}`;
   window.scrollTo(0, 0);
@@ -1026,7 +1027,11 @@ function route() {
 }
 
 /* ---------- Arranque ---------- */
-const getJSON = u => fetch(u).then(r => { if (!r.ok) throw new Error(u + ": " + r.status); return r.json(); });
+const getJSON = u => fetch(u).then(r => {
+  if (r.status === 401) { location.href = "/login"; throw new Error("sesión caducada"); }   // web protegida (Cloudflare)
+  if (!r.ok) throw new Error(u + ": " + r.status);
+  return r.json();
+});
 Promise.all([getJSON("data/meta.json"), getJSON("data/videos.json"), getJSON("data/articles.json")]).then(([meta, vd, ad]) => {
   META = meta;
   document.title = META.title; $("#siteTitle").textContent = META.title;

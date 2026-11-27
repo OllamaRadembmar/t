@@ -4,8 +4,28 @@
     {
       "name": "blogtube",
       "runtimeExecutable": ".venv/Scripts/python.exe",
-      "runtimeArgs": ["-m", "http.server", "8765", "-d", "site"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "-d",
+        "site"
+      ],
       "port": 8765
+    },
+    {
+      "name": "blogtube-cloudflare",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "--yes",
+        "wrangler@4",
+        "pages",
+        "dev",
+        "site",
+        "--port",
+        "8788"
+      ],
+      "port": 8788
     }
   ]
 }

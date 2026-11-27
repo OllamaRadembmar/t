@@ -45,8 +45,22 @@ Opciones útiles de `build.py`: `--solo videos|blogs|personas`, `--only "Ernesto
 Todo está en [`sources.toml`](sources.toml): copia un bloque `[[canal]]`, `[[blog]]` o `[[persona]]`, cambia los datos
 y guarda. Para encontrar el `id` de un canal de YouTube, abre el canal → «Compartir canal» → «Copiar ID del canal».
 
-## Publicación (GitHub Pages, gratis)
+## Publicación (privada: Cloudflare Pages + usuario y contraseña)
 
-La web está en **https://ollamaradembmar.github.io/t/**. Cada lunes, GitHub Actions ejecuta `build.py`
-y la vuelve a publicar; también se puede lanzar a mano en **Actions → Actualizar y publicar → Run workflow**.
-Solo se publican metadatos (títulos, portadas, resúmenes breves): los textos íntegros se quedan en `cache/bodies/`, en local.
+El repositorio es **privado**. Cada lunes (o a mano en **Actions → Actualizar y publicar → Run workflow**),
+GitHub Actions ejecuta `build.py` y publica `site/` en **Cloudflare Pages**. Antes de servir cualquier archivo,
+[`functions/_middleware.js`](functions/_middleware.js) exige **usuario y contraseña** en el servidor de Cloudflare;
+la sesión dura 30 días y se cierra desde «Acerca → Cerrar sesión».
+
+Secretos del repositorio (Settings → Secrets and variables → Actions):
+
+| Secreto | Qué es |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Token de Cloudflare con permiso *Account · Cloudflare Pages · Edit* |
+| `CLOUDFLARE_ACCOUNT_ID` | ID de la cuenta de Cloudflare |
+| `BLOG_USER` / `BLOG_PASS` | Usuario y contraseña para entrar en la web |
+
+Para cambiar la contraseña: `gh secret set BLOG_PASS` y relanzar el workflow (cierra todas las sesiones abiertas).
+
+Probar el login en local: crea `.dev.vars` con `BLOG_USER=...` y `BLOG_PASS=...` y ejecuta
+`npx wrangler@4 pages dev site --port 8788`.
