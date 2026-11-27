@@ -22,37 +22,37 @@
   "EWvNQjAaOHw": {
    "t": "How I use LLMs",
    "d": 7872,
-   "v": 2996780,
+   "v": 2996837,
    "date": "2025-02-27"
   },
   "7xTGNNLPyMI": {
    "t": "Deep Dive into LLMs like ChatGPT",
    "d": 12684,
-   "v": 11102285,
+   "v": 11102694,
    "date": "2025-02-05"
   },
   "l8pRSuU81PU": {
    "t": "Let's reproduce GPT-2 (124M)",
    "d": 14486,
-   "v": 1251156,
+   "v": 1251173,
    "date": "2024-06-09"
   },
   "zduSFxRajkE": {
    "t": "Let's build the GPT Tokenizer",
    "d": 8015,
-   "v": 1280443,
+   "v": 1280460,
    "date": "2024-02-20"
   },
   "zjkBMFhNj_g": {
    "t": "[1hr Talk] Intro to Large Language Models",
    "d": 3588,
-   "v": 4430519,
+   "v": 4430615,
    "date": "2023-11-23"
   },
   "kCc8FmEb1nY": {
    "t": "Let's build GPT: from scratch, in code, spelled out.",
    "d": 6980,
-   "v": 8421107,
+   "v": 8421247,
    "date": "2023-01-17"
   },
   "t3YJ5hKiMQ0": {
@@ -70,19 +70,19 @@
   "P6sfmUTpUmc": {
    "t": "Building makemore Part 3: Activations & Gradients, BatchNorm",
    "d": 6958,
-   "v": 577441,
+   "v": 577496,
    "date": "2022-10-04"
   },
   "TCH_1BHY58I": {
    "t": "Building makemore Part 2: MLP",
    "d": 4540,
-   "v": 622120,
+   "v": 622135,
    "date": "2022-09-12"
   },
   "PaCmpygFfXo": {
    "t": "The spelled-out intro to language modeling: building makemore",
    "d": 7065,
-   "v": 1343038,
+   "v": 1343069,
    "date": "2022-09-07"
   },
   "kVpDARqZdrQ": {
@@ -106,7 +106,7 @@
   "VMj-3S1tku0": {
    "t": "The spelled-out intro to neural networks and backpropagation: building micrograd",
    "d": 8752,
-   "v": 4549059,
+   "v": 4549152,
    "date": "2022-08-16"
   },
   "vEnetcj_728": {
@@ -127,5 +127,5 @@
   "subs": 1780000,
   "url": "https://www.youtube.com/channel/UCXUPKJO5MZQN11PqgIvyuvQ"
  },
- "updated": "2026-11-27T15:01:24+00:00"
+ "updated": "2026-11-27T15:26:59+00:00"
 }
