@@ -1,9 +1,5 @@
 name: Actualizar y publicar
 
-# Construye la web en GitHub (repo privado) y la publica en Cloudflare Pages,
-# protegida con Cloudflare Access (ver access.yml). Secretos necesarios:
-#   CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
-
 on:
   schedule:
     - cron: "0 5 * * 1"        # cada lunes a las 05:00 UTC (no hace falta más: no hay prisa)
@@ -19,13 +15,15 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: publicar
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,13 +31,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-
       - name: Descargar fuentes
         run: python build.py ${{ github.event.inputs.full == 'true' && '--full' || '' }}
         continue-on-error: true   # si YouTube o Substack fallan, se publica lo que ya había en cache/
       - name: Recomponer desde cache (por si el paso anterior falló a medias)
         run: python build.py --offline
-
+      - name: Comprobar que no se publica ningún texto íntegro
+        run: |
+          test ! -d site/data/a || test -z "$(ls -A site/data/a)"
+          python -c "import json; assert not json.load(open('site/data/meta.json')).get('textos')"
       - name: Guardar cache (solo metadatos) en el repo
         run: |
           git config user.name "blogtube-bot"
@@ -47,18 +47,16 @@ jobs:
           git add cache
           git diff --cached --quiet || git commit -m "Actualizar contenido $(date -u +%Y-%m-%d)"
           git push
-
-      - name: Crear el proyecto de Cloudflare Pages (solo la primera vez)
-        uses: cloudflare/wrangler-action@v3
-        continue-on-error: true
+      - uses: actions/upload-pages-artifact@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create blogtube --production-branch=main
+          path: site
 
-      - name: Publicar en Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy site --project-name=blogtube --branch=main --commit-dirty=true
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -45,18 +45,8 @@ Opciones útiles de `build.py`: `--solo videos|blogs|personas`, `--only "Ernesto
 Todo está en [`sources.toml`](sources.toml): copia un bloque `[[canal]]`, `[[blog]]` o `[[persona]]`, cambia los datos
 y guarda. Para encontrar el `id` de un canal de YouTube, abre el canal → «Compartir canal» → «Copiar ID del canal».
 
-## Publicación (Cloudflare Pages, privada)
+## Publicación (GitHub Pages, gratis)
 
-El repositorio es privado. Cada lunes, GitHub Actions ejecuta `build.py` y publica `site/` en
-**Cloudflare Pages**; **Cloudflare Access** deja entrar solo a los emails autorizados (con un código por email).
-
-Secretos del repositorio (Settings → Secrets and variables → Actions):
-
-| Secreto | Qué es |
-|---|---|
-| `CLOUDFLARE_API_TOKEN` | Token con permisos *Cloudflare Pages: Edit* y *Access: Apps and Policies: Edit* |
-| `CLOUDFLARE_ACCOUNT_ID` | ID de la cuenta de Cloudflare |
-| `ACCESS_EMAILS` | Email(s) autorizados, separados por comas |
-
-- `Actualizar y publicar` (update.yml): construye y publica. Se puede lanzar a mano desde Actions.
-- `Proteger la web` (access.yml): crea o actualiza la protección de Access. Ejecútalo una vez y cuando cambies los emails.
+La web está en **https://ollamaradembmar.github.io/blogtube/**. Cada lunes, GitHub Actions ejecuta `build.py`
+y la vuelve a publicar; también se puede lanzar a mano en **Actions → Actualizar y publicar → Run workflow**.
+Solo se publican metadatos (títulos, portadas, resúmenes breves): los textos íntegros se quedan en `cache/bodies/`, en local.
