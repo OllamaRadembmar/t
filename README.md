@@ -47,6 +47,6 @@ y guarda. Para encontrar el `id` de un canal de YouTube, abre el canal → «Com
 
 ## Publicación (GitHub Pages, gratis)
 
-La web está en **https://ollamaradembmar.github.io/blogtube/**. Cada lunes, GitHub Actions ejecuta `build.py`
+La web está en **https://ollamaradembmar.github.io/t/**. Cada lunes, GitHub Actions ejecuta `build.py`
 y la vuelve a publicar; también se puede lanzar a mano en **Actions → Actualizar y publicar → Run workflow**.
 Solo se publican metadatos (títulos, portadas, resúmenes breves): los textos íntegros se quedan en `cache/bodies/`, en local.
