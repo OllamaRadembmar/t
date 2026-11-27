@@ -22,37 +22,37 @@
   "EWvNQjAaOHw": {
    "t": "How I use LLMs",
    "d": 7872,
-   "v": 2996854,
+   "v": 2996930,
    "date": "2025-02-27"
   },
   "7xTGNNLPyMI": {
    "t": "Deep Dive into LLMs like ChatGPT",
    "d": 12684,
-   "v": 11102848,
+   "v": 11103386,
    "date": "2025-02-05"
   },
   "l8pRSuU81PU": {
    "t": "Let's reproduce GPT-2 (124M)",
    "d": 14486,
-   "v": 1251181,
+   "v": 1251215,
    "date": "2024-06-09"
   },
   "zduSFxRajkE": {
    "t": "Let's build the GPT Tokenizer",
    "d": 8015,
-   "v": 1280468,
+   "v": 1280487,
    "date": "2024-02-20"
   },
   "zjkBMFhNj_g": {
    "t": "[1hr Talk] Intro to Large Language Models",
    "d": 3588,
-   "v": 4430651,
+   "v": 4430761,
    "date": "2023-11-23"
   },
   "kCc8FmEb1nY": {
    "t": "Let's build GPT: from scratch, in code, spelled out.",
    "d": 6980,
-   "v": 8421368,
+   "v": 8421576,
    "date": "2023-01-17"
   },
   "t3YJ5hKiMQ0": {
@@ -70,19 +70,19 @@
   "P6sfmUTpUmc": {
    "t": "Building makemore Part 3: Activations & Gradients, BatchNorm",
    "d": 6958,
-   "v": 577496,
+   "v": 577514,
    "date": "2022-10-04"
   },
   "TCH_1BHY58I": {
    "t": "Building makemore Part 2: MLP",
    "d": 4540,
-   "v": 622139,
+   "v": 622154,
    "date": "2022-09-12"
   },
   "PaCmpygFfXo": {
    "t": "The spelled-out intro to language modeling: building makemore",
    "d": 7065,
-   "v": 1343078,
+   "v": 1343101,
    "date": "2022-09-07"
   },
   "kVpDARqZdrQ": {
@@ -100,13 +100,13 @@
   "sM9bozW295Q": {
    "t": "Stable diffusion dreams of tattoos",
    "d": 106,
-   "v": 106913,
+   "v": 106917,
    "date": "2022-08-16"
   },
   "VMj-3S1tku0": {
    "t": "The spelled-out intro to neural networks and backpropagation: building micrograd",
    "d": 8752,
-   "v": 4549198,
+   "v": 4549357,
    "date": "2022-08-16"
   },
   "vEnetcj_728": {
@@ -127,5 +127,5 @@
   "subs": 1780000,
   "url": "https://www.youtube.com/channel/UCXUPKJO5MZQN11PqgIvyuvQ"
  },
- "updated": "2026-11-27T15:38:34+00:00"
+ "updated": "2026-11-27T16:06:00+00:00"
 }
