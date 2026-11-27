@@ -1,0 +1,19 @@
+name: Proteger la web (Cloudflare Access)
+
+# Ejecútalo a mano una vez (y cada vez que cambies los emails autorizados).
+# Secretos: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, ACCESS_EMAILS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  access:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Crear o actualizar la protección
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ACCESS_EMAILS: ${{ secrets.ACCESS_EMAILS }}
+        run: python .github/scripts/cf_access.py

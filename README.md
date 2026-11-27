@@ -45,9 +45,18 @@ Opciones útiles de `build.py`: `--solo videos|blogs|personas`, `--only "Ernesto
 Todo está en [`sources.toml`](sources.toml): copia un bloque `[[canal]]`, `[[blog]]` o `[[persona]]`, cambia los datos
 y guarda. Para encontrar el `id` de un canal de YouTube, abre el canal → «Compartir canal» → «Copiar ID del canal».
 
-## Publicar gratis en GitHub Pages (sin dominio)
+## Publicación (Cloudflare Pages, privada)
 
-1. Crea un repositorio en GitHub (por ejemplo `blogtube`) y sube esta carpeta.
-2. En el repo: **Settings → Pages → Source: GitHub Actions**.
-3. **Actions → Actualizar y publicar → Run workflow**.
-4. La web queda en `https://<tu-usuario>.github.io/blogtube/`.
+El repositorio es privado. Cada lunes, GitHub Actions ejecuta `build.py` y publica `site/` en
+**Cloudflare Pages**; **Cloudflare Access** deja entrar solo a los emails autorizados (con un código por email).
+
+Secretos del repositorio (Settings → Secrets and variables → Actions):
+
+| Secreto | Qué es |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Token con permisos *Cloudflare Pages: Edit* y *Access: Apps and Policies: Edit* |
+| `CLOUDFLARE_ACCOUNT_ID` | ID de la cuenta de Cloudflare |
+| `ACCESS_EMAILS` | Email(s) autorizados, separados por comas |
+
+- `Actualizar y publicar` (update.yml): construye y publica. Se puede lanzar a mano desde Actions.
+- `Proteger la web` (access.yml): crea o actualiza la protección de Access. Ejecútalo una vez y cuando cambies los emails.
