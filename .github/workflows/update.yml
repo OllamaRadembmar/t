@@ -1,11 +1,5 @@
 name: Actualizar y publicar
 
-# Repo privado → construye la web y la publica en Cloudflare Pages, protegida con
-# usuario y contraseña (functions/_middleware.js). Secretos del repositorio:
-#   CLOUDFLARE_API_TOKEN   token con permiso "Account · Cloudflare Pages · Edit"
-#   CLOUDFLARE_ACCOUNT_ID  ID de la cuenta de Cloudflare
-#   BLOG_USER, BLOG_PASS   usuario y contraseña para entrar en la web
-
 on:
   schedule:
     - cron: "0 5 * * 1"        # cada lunes a las 05:00 UTC (no hace falta más: no hay prisa)
@@ -17,17 +11,19 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ["sources.toml", "site/index.html", "build.py", "functions/**", ".github/workflows/update.yml"]
+    paths: ["sources.toml", "site/index.html", "build.py", ".github/workflows/update.yml"]
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: publicar
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,13 +31,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-
       - name: Descargar fuentes
         run: python build.py ${{ github.event.inputs.full == 'true' && '--full' || '' }}
         continue-on-error: true   # si YouTube o Substack fallan, se publica lo que ya había en cache/
       - name: Recomponer desde cache (por si el paso anterior falló a medias)
         run: python build.py --offline
-
+      - name: Comprobar que no se publica ningún texto íntegro
+        run: |
+          test ! -d site/data/a || test -z "$(ls -A site/data/a)"
+          python -c "import json; assert not json.load(open('site/data/meta.json')).get('textos')"
       - name: Guardar cache (solo metadatos) en el repo
         run: |
           git config user.name "blogtube-bot"
@@ -49,27 +47,16 @@ jobs:
           git add cache
           git diff --cached --quiet || git commit -m "Actualizar contenido $(date -u +%Y-%m-%d)"
           git push
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
 
-      - name: Publicar en Cloudflare Pages (con usuario y contraseña)
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          BLOG_USER: ${{ secrets.BLOG_USER }}
-          BLOG_PASS: ${{ secrets.BLOG_PASS }}
-        run: |
-          test -n "$BLOG_USER" && test -n "$BLOG_PASS" || { echo "Faltan BLOG_USER / BLOG_PASS"; exit 1; }
-          npx --yes wrangler@4 pages project create blogtube --production-branch=main || true
-          printf '%s' "$BLOG_USER" | npx --yes wrangler@4 pages secret put BLOG_USER --project-name=blogtube
-          printf '%s' "$BLOG_PASS" | npx --yes wrangler@4 pages secret put BLOG_PASS --project-name=blogtube
-          npx --yes wrangler@4 pages deploy site --project-name=blogtube --branch=main --commit-dirty=true | tee deploy.log
-
-      - name: Comprobar que la web exige contraseña
-        run: |
-          URL=$(grep -oE 'https://[a-z0-9.-]+\.pages\.dev' deploy.log | head -1)
-          HOST=$(echo "$URL" | sed -E 's#https://[a-z0-9]+\.##')   # URL del despliegue → dominio de producción
-          for u in "$URL" "https://$HOST"; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "$u/data/videos.json")
-            echo "$u/data/videos.json → $code"
-            test "$code" = "401" || { echo "¡La web no está protegida!"; exit 1; }
-          done
-          echo "Web publicada y protegida: https://$HOST"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

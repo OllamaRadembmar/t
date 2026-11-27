@@ -7,8 +7,3 @@ __pycache__/
 cache/bodies/
 # Se genera en cada publicación desde cache/ (metadatos)
 site/data/
-
-# Credenciales de prueba para wrangler pages dev (solo local)
-.dev.vars
-.wrangler/
-node_modules/
