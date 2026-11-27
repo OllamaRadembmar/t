@@ -1,5 +1,6 @@
 {
  "order": [
+  "nNbT0_otius",
   "rj2LO1bV_9k",
   "A8eltZXpxhA",
   "wkkw6uQcNm0",
@@ -1668,43 +1669,43 @@
   "rj2LO1bV_9k": {
    "t": "Hoy tenemos menos libertad de enseñanza que hace 150 años: coloquio sobre educación y literatura",
    "d": 3629,
-   "v": 20000,
+   "v": 20274,
    "date": "2026-11-25"
   },
   "A8eltZXpxhA": {
    "t": "Calvo Poyato, El imperio en la tormenta: Felipe II, Inglaterra y la historia como campo de batalla",
    "d": 2955,
-   "v": 23239,
+   "v": 23348,
    "date": "2026-11-23"
   },
   "wkkw6uQcNm0": {
    "t": "Una ficción que coloniza tu mente puede somatizar tu cuerpo: Literatura y trastornos de personalidad",
    "d": 4293,
-   "v": 40041,
+   "v": 40160,
    "date": "2026-11-20"
   },
   "f0yzMQLQckA": {
    "t": "Nada puede legitimar en nombre de la democracia la privación de libertad por razones excepcionales",
    "d": 4744,
-   "v": 22176,
+   "v": 22218,
    "date": "2026-11-18"
   },
   "wjuhrpb_-5U": {
    "t": "Divorcio entre universidad y empresa: Así se arruina hoy el futuro de los más jóvenes, ojo con esto",
    "d": 2327,
-   "v": 62327,
+   "v": 62455,
    "date": "2026-11-16"
   },
   "M3HyeTpQPfY": {
    "t": "Leemos el Quijote (I, 16): Don Quijote acosa a Maritornes en la venta que imagina ser castillo",
    "d": 1170,
-   "v": 7209,
+   "v": 7216,
    "date": "2026-11-15"
   },
   "rC5pXh1aIl4": {
    "t": "La libertad humana es incompatible con sistemas políticos que pretenden subordinarla a una ficción",
    "d": 4367,
-   "v": 28290,
+   "v": 28000,
    "date": "2026-11-13"
   },
   "wfbOlrtLI_I": {
@@ -1734,7 +1735,7 @@
   "lAti-nqfwxI": {
    "t": "¿Qué tiene Cervantes que no tiene Pérez Reverte? La ficción de los clásicos gusta más a los +jóvenes",
    "d": 2824,
-   "v": 117000,
+   "v": 118000,
    "date": null
   },
   "FPew_mfTJpU": {
@@ -1752,7 +1753,7 @@
   "hD6kxG8tAWE": {
    "t": "¿Democracia o totalitarismo? ¿Qué convierte a un político en un tirano? La vida es sueño de Calderón",
    "d": 4629,
-   "v": 44000,
+   "v": 45000,
    "date": null
   },
   "Em98QxZPvlk": {
@@ -11642,6 +11643,12 @@
    "d": 264,
    "v": 7300,
    "date": null
+  },
+  "nNbT0_otius": {
+   "t": "Rafael Caunedo y Jesús G. Maestro: entrevista y coloquio sobre Cervantes y el Quijote",
+   "d": 4448,
+   "v": 320,
+   "date": "2026-11-27"
   }
  },
  "meta": {
@@ -11649,5 +11656,5 @@
   "subs": null,
   "url": "https://www.youtube.com/channel/UCfWWjBMY6zpvvU6wAe5j_Eg"
  },
- "updated": "2026-11-27T12:30:36+00:00"
+ "updated": "2026-11-27T15:01:10+00:00"
 }
